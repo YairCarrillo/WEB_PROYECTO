@@ -5,10 +5,25 @@
  */
 package com.ipn.mx.modelo.dto;
 
+import com.ipn.mx.modelo.entidades.Paciente;
+import java.io.Serializable;
+
 /**
  *
  * @author yirz
  */
-public class PacienteDTO {
+public class PacienteDTO implements Serializable{
+    private Paciente entidad;
     
+    public PacienteDTO(){
+        entidad = new Paciente();
+    }
+
+    public Paciente getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(Paciente entidad) {
+        this.entidad = entidad;
+    }
 }

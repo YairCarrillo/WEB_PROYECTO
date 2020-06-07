@@ -84,7 +84,7 @@ public class MedicoDAO {
         Transaction transaction = session.getTransaction();
         transaction.begin();
         List<MedicoDTO> lista;
-        Query query = session.createQuery("from medico h order by h.idhistorial");
+        Query query = session.createQuery("from medico h order by h.cedula");
         lista = query.list();
         transaction.commit();
         return lista;       

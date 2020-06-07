@@ -84,7 +84,7 @@ public class EspecialidadDAO {
         Transaction transaction = session.getTransaction();
         transaction.begin();
         List<EspecialidadDTO> lista;
-        Query query = session.createQuery("from especialidad h order by h.idhistorial");
+        Query query = session.createQuery("from especialidad h order by h.idESp");
         lista = query.list();
         transaction.commit();
         return lista;       

@@ -78,9 +78,5 @@ public class Paciente implements Serializable{
         sb.append(", tel=").append(tel);
         sb.append('}');
         return sb.toString();
-    }
-   
-   
-    
-    
+    }   
 }

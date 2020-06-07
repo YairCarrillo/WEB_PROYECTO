@@ -6,12 +6,18 @@
 package com.ipn.mx.modelo.entidades;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author yirz
  */
+@Entity
+@Table(name="especialidad")
 public class Especialidad implements Serializable{
+    @Id
     private int idEsp;
     private String descEsp;
 

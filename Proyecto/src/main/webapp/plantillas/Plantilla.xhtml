@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <title>Facelets Template</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="jquery-3.5.1.slim.min.js"/>
+        <h:outputScript library="js" name="popper.min.js"/>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">Hospital Web</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pacientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Causas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Cuartos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Médicos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Especialidad</a>
+                            </li>
+                        </ul>
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Usuario" aria-label="Usuario"/>
+                            <input class="form-control mr-sm-2" type="password" placeholder="Contraseña" aria-label="Contraseña"/>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Iniciar Sesión</button>
+                        </form>
+                    </div>
+                </nav>
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">
+                Content
+            </ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">
+                <div class="fixed-bottom">
+                    <div class="mx-auto">
+                        <div class="p-3 mb-2 bg-light text-dark">
+                            | 1997-2020 &copy; Carrillo Bálcazar Eduardo Yair | 1998-2020 &copy; Meléndez Macedonio Jonathan | All Rights Reserved | Escuela Superior de Cómputo | Instituto Politécnico Nacional |
+                        </div>
+                    </div>
+                </div>
+            </ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

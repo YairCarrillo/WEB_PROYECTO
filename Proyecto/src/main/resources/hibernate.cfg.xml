@@ -5,9 +5,9 @@
     <session-factory>
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/Inventario</property>
-        <property name="connection.username">postgres</property>
-        <property name="connection.password">admin</property>
+        <property name="connection.url">jdbc:postgresql://ec2-52-44-55-63.compute-1.amazonaws.com:5432/denmvmarmuuvcu?sslmode=require</property>
+        <property name="connection.username">ntkbequsmrwokb</property>
+        <property name="connection.password">bdfb3ebe920f1cac9d88f2ff19b261059014dd77ec5237f28eb84b14ac3706fd</property>
         
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>

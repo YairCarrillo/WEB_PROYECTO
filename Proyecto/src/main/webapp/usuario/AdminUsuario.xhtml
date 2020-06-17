@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
@@ -55,14 +56,19 @@
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Acciones</f:facet>
-                                                <h:commandButton style="margin: 10px" id="btnEditar" value="Editar" action="#{usuarioMB.actualizar()}" actionListener="#{eventoMB.seleccionarEvento(event)}">
-                                                    <f:param name="claveSel" value="#{dto.idusuario}"/>
+                                                <h:commandButton class="btn btn-primary" style="margin: 10px" id="btnEditar" value="Editar" action="#{usuarioMB.editar()}" actionListener="#{usuarioMB.seleccionarEvento}">
+                                                    <f:param name="clave" value="#{dto.idusuario}"/>
                                                 </h:commandButton>
-                                                <h:commandButton id="btnEliminar" value="Eliminar" action="#{usuarioMB.borrar()}" actionListener="#{eventoMB.seleccionarEvento(event)}">
-                                                    <f:param name="claveSel" value="#{dto.idusuario}"/>
-                                                </h:commandButton>
+                                                <h:commandButton class="btn btn-danger" style="margin: 10px" id="btnDelete" value="Borrar" action="#{usuarioMB.borrar()}" actionListener="#{usuarioMB.seleccionarEvento}">
+                                                    <f:param name="clave" value="#{dto.idusuario}"/>
+                                                </h:commandButton> 
                                             </h:column>
                                         </h:dataTable> 
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 offset-sm-4">
+                                            <h:commandButton  class="btn btn-primary" style="width: 100%" id="btnCreate" value="Nuevo Usuario" action="#{usuarioMB.nuevo()}"/>
+                                        </div>
                                     </div>
 
                                 </h:form>

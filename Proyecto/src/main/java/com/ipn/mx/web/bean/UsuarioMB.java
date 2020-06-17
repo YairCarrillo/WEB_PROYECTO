@@ -12,14 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+
+
 
 /**
  *
  * @author yirz
  */
 @Named(value = "usuarioMB")
-@Dependent
+@SessionScoped
 public class UsuarioMB extends BaseBean implements Serializable{
     private UsuarioDTO dto;
     private UsuarioDAO dao = new UsuarioDAO();
@@ -37,14 +41,13 @@ public class UsuarioMB extends BaseBean implements Serializable{
     }
     public String nuevo(){
         dto = new UsuarioDTO();
-        setAccion(ACC_CREAR);
+        this.setAccion(ACC_CREAR);
         
         return "/usuario/FormUsuario?faces-redirect=true";
     }
     
     public String editar(){
-        setAccion(ACC_ACTUALIZAR);
-        
+        this.setAccion(ACC_ACTUALIZAR);
         return "/usuario/FormUsuario?faces-redirect=true";
     } 
     public String back(){
@@ -81,11 +84,20 @@ public class UsuarioMB extends BaseBean implements Serializable{
     public String borrar(){
         try{
             dao.delete(dto);
-            
             return prepareIndex();
         }catch(Exception e){
             error("ErrorBorrarEvento", "Error al borrar el evento");
             return "/usuario/AdminUsuario?faces-redirect=true";
+        }
+    }
+    public void seleccionarEvento(ActionEvent event) {
+        String claveSel = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("clave");    
+        dto = new UsuarioDTO();
+        dto.getEntidad().setIdusuario(Integer.parseInt(claveSel));
+        try {
+            dto = dao.read(dto);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
     public UsuarioDTO getDto() {

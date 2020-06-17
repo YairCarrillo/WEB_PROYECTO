@@ -90,9 +90,10 @@ public class UsuarioDAO {
         return lista;       
     }
     public static void main(String[] args) {
-        List listadto;
+        UsuarioDTO dto=new UsuarioDTO();
+        dto.getEntidad().setIdusuario(1);
         UsuarioDAO dao=new UsuarioDAO();
-        listadto=dao.readAll();
-        System.out.println(listadto);
+        dao.delete(dto);
+        System.out.println(dto);
     }
 }

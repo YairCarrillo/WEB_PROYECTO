@@ -23,6 +23,8 @@ public class LoginBean extends BaseBean implements Serializable {
     private UsuarioDTO dto;
     private UsuarioDAO dao = new UsuarioDAO();
     
+    public LoginBean(){
+    }
     
     public String login(){
         

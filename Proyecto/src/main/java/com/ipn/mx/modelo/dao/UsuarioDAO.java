@@ -84,9 +84,15 @@ public class UsuarioDAO {
         Transaction transaction = session.getTransaction();
         transaction.begin();
         List<UsuarioDTO> lista;
-        Query query = session.createQuery("from usuario h order by h.idusuario");
+        Query query = session.createQuery("from Usuario h order by h.idusuario");
         lista = query.list();
         transaction.commit();
         return lista;       
+    }
+    public static void main(String[] args) {
+        List listadto;
+        UsuarioDAO dao=new UsuarioDAO();
+        listadto=dao.readAll();
+        System.out.println(listadto);
     }
 }

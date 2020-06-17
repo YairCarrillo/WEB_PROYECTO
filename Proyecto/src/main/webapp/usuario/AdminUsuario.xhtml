@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="jquery-3.5.1.slim.min.js"/>
+        <h:outputScript library="js" name="popper.min.js"/>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../plantillas/Plantilla.xhtml">
+            <ui:define name="content">
+                <div class="container " style="padding: 20px">
+                    <div class="row">
+                        
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header">Lista de Usuarios</h5>
+                        <div class="card-body">
+                            <f:view>
+                                <h:form id="frmEventos">
+                                    <h:dataTable class="table table-striped" var="dto" value="#{usuarioMB.listaDeUsuarios}">
+                                        <h:column rowHeader="thead-dark">
+                                            <f:facet  name="header"> Folio</f:facet>
+                                            <h:outputText value="#{dto.idusuario}"></h:outputText>
+                                        </h:column>
+                                        <h:column >
+                                            <f:facet name="header">Nombre</f:facet>
+                                            <h:outputText value="#{dto.nombre}"></h:outputText>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Ap.Paterno</f:facet>
+                                            <h:outputText value="#{dto.paterno}"></h:outputText>
+                                        </h:column>
+                                        <h:column >
+                                            <f:facet name="header">Ap.Materno</f:facet>
+                                            <h:outputText value="#{dto.materno}"></h:outputText>
+                                        </h:column>
+                                        <h:column >
+                                            <f:facet name="header">Usuario</f:facet>
+                                            <h:outputText value="#{dto.nombreusuario}"></h:outputText>
+                                        </h:column>
+                                        <h:column >
+                                            <f:facet name="header">Password</f:facet>
+                                            <h:outputText  value="#{dto.password}"></h:outputText>
+                                        </h:column>
+                                        <h:column >
+                                            <f:facet name="header">Foto de Perfil</f:facet>
+                                            <h:outputText  value="#{dto.password}"></h:outputText>
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:form>
+                            </f:view>
+                            
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition> 
+    </h:body>
+</html>
+

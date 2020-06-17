@@ -26,6 +26,7 @@
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
         <mapping class="com.ipn.mx.modelo.entidades.CausaHosp" />
+        <mapping class="com.ipn.mx.modelo.entidades.Usuario" />
         <mapping class="com.ipn.mx.modelo.entidades.Cuarto" />
         <mapping class="com.ipn.mx.modelo.entidades.EdoCuarto" />
         <mapping class="com.ipn.mx.modelo.entidades.Especialidad" />

@@ -6,6 +6,7 @@
 package com.ipn.mx.modelo.dao;
 
 import com.ipn.mx.modelo.dto.UsuarioDTO;
+import com.ipn.mx.modelo.entidades.Usuario;
 import com.ipn.mx.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -89,6 +90,35 @@ public class UsuarioDAO {
         transaction.commit();
         return lista;       
     }
+    
+    public UsuarioDTO login(UsuarioDTO dto){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
+        List lista = null;
+        try{
+            transaction.begin();
+            Query query = session.createSQLQuery("from Usuario h where h.nombreusuario=:u and h.password=:p").addEntity(Usuario.class)
+                    .setParameter("u", dto.getEntidad().getNombreusuario())
+                    .setParameter("p", dto.getEntidad().getPassword());
+            lista = query.list();
+            transaction.commit();
+
+            if(lista.size() > 0){
+                dto.setEntidad((Usuario) lista.get(0));
+
+                return dto;
+            }else{
+                return null;
+            } 
+        }catch(HibernateException ex){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback();
+            }
+        }
+        
+        return dto;
+    }
+    
     public static void main(String[] args) {
         UsuarioDTO dto=new UsuarioDTO();
         dto.getEntidad().setIdusuario(1);

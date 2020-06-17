@@ -22,12 +22,12 @@ import javax.servlet.http.HttpSession;
 public class LoginBean extends BaseBean implements Serializable {
     private UsuarioDTO dto;
     private UsuarioDAO dao = new UsuarioDAO();
-    private HttpSession session;
+    
     
     public String login(){
         
         if(dao.login(dto) != null){
-            session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
             session.setAttribute("nombreUsuario", dto.getEntidad().getNombreusuario());
 
             return "/Principal?faces-redirect=true";
@@ -37,20 +37,14 @@ public class LoginBean extends BaseBean implements Serializable {
     }
     
     public String logout(){
-
-        if(getLoginName()){
-            return "/index?faces-redirect=true";
-        }else{
-            return "/index?faces-redirect=true";
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.removeAttribute("nombreUsuario");
+        
+        if(session != null){
+            session.invalidate();
         }
-    }
-    
-    public boolean getLoginName(){
-        if(session == null){
-            return false;
-        }else{
-            return session.getAttribute("nombreUsuario") != null;
-        }
+        
+        return "/index?faces-redirect=true";
     }
     
     public UsuarioDTO getDto() {

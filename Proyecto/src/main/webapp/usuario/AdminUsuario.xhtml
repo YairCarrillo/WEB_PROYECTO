@@ -14,51 +14,60 @@
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
     </h:head>
-    <h:body>
+    <h:body >
         <ui:composition template="./../plantillas/Plantilla.xhtml">
-            <ui:define name="content">
-                <div class="container " style="padding: 20px">
-                    <div class="row">
-                        
-                    </div>
-                    <div class="card">
+            <ui:define name="content" >
+                <div class="container" style="padding: 20px">
+                    <div class="card" style="opacity: 90%">
                         <h5 class="card-header">Lista de Usuarios</h5>
                         <div class="card-body">
                             <f:view>
                                 <h:form id="frmEventos">
-                                    <h:dataTable class="table table-striped" var="dto" value="#{usuarioMB.listaDeUsuarios}">
-                                        <h:column rowHeader="thead-dark">
-                                            <f:facet  name="header"> Folio</f:facet>
-                                            <h:outputText value="#{dto.idusuario}"></h:outputText>
-                                        </h:column>
-                                        <h:column >
-                                            <f:facet name="header">Nombre</f:facet>
-                                            <h:outputText value="#{dto.nombre}"></h:outputText>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Ap.Paterno</f:facet>
-                                            <h:outputText value="#{dto.paterno}"></h:outputText>
-                                        </h:column>
-                                        <h:column >
-                                            <f:facet name="header">Ap.Materno</f:facet>
-                                            <h:outputText value="#{dto.materno}"></h:outputText>
-                                        </h:column>
-                                        <h:column >
-                                            <f:facet name="header">Usuario</f:facet>
-                                            <h:outputText value="#{dto.nombreusuario}"></h:outputText>
-                                        </h:column>
-                                        <h:column >
-                                            <f:facet name="header">Password</f:facet>
-                                            <h:outputText  value="#{dto.password}"></h:outputText>
-                                        </h:column>
-                                        <h:column >
-                                            <f:facet name="header">Foto de Perfil</f:facet>
-                                            <h:outputText  value="#{dto.password}"></h:outputText>
-                                        </h:column>
-                                    </h:dataTable>
+                                    <div class="table-responsive">
+                                        <h:dataTable class="table table-striped" var="dto" value="#{usuarioMB.listaDeUsuarios}">
+                                            <h:column rowHeader="thead-dark">
+                                                <f:facet  name="header"> Folio</f:facet>
+                                                <h:outputText value="#{dto.idusuario}"></h:outputText>
+                                            </h:column>
+                                            <h:column >
+                                                <f:facet name="header">Nombre</f:facet>
+                                                <h:outputText value="#{dto.nombre}"></h:outputText>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Ap.Paterno</f:facet>
+                                                <h:outputText value="#{dto.paterno}"></h:outputText>
+                                            </h:column>
+                                            <h:column >
+                                                <f:facet name="header">Ap.Materno</f:facet>
+                                                <h:outputText value="#{dto.materno}"></h:outputText>
+                                            </h:column>
+                                            <h:column >
+                                                <f:facet name="header">Usuario</f:facet>
+                                                <h:outputText value="#{dto.nombreusuario}"></h:outputText>
+                                            </h:column>
+                                            <h:column >
+                                                <f:facet name="header">Password</f:facet>
+                                                <h:outputText  value="#{dto.password}"></h:outputText>
+                                            </h:column>
+                                            <h:column >
+                                                <f:facet name="header">Foto de Perfil</f:facet>
+                                                <h:outputText  value="#{dto.password}"></h:outputText>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Acciones</f:facet>
+                                                <h:commandButton style="margin: 10px" id="btnEditar" value="Editar" action="#{usuarioMB.actualizar()}" actionListener="#{eventoMB.seleccionarEvento(event)}">
+                                                    <f:param name="claveSel" value="#{dto.idusuario}"/>
+                                                </h:commandButton>
+                                                <h:commandButton id="btnEliminar" value="Eliminar" action="#{usuarioMB.borrar()}" actionListener="#{eventoMB.seleccionarEvento(event)}">
+                                                    <f:param name="claveSel" value="#{dto.idusuario}"/>
+                                                </h:commandButton>
+                                            </h:column>
+                                        </h:dataTable> 
+                                    </div>
+
                                 </h:form>
                             </f:view>
-                            
+
                         </div>
                     </div>
                 </div>

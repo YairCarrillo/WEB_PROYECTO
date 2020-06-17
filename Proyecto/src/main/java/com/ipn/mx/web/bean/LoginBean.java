@@ -10,6 +10,7 @@ import com.ipn.mx.modelo.dto.UsuarioDTO;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -21,9 +22,15 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class LoginBean extends BaseBean implements Serializable {
     private UsuarioDTO dto;
-    private UsuarioDAO dao = new UsuarioDAO();
+    private UsuarioDAO dao;
     
     public LoginBean(){
+    }
+    
+    @PostConstruct
+    public void init(){
+        dto = new UsuarioDTO();
+        dao = new UsuarioDAO();
     }
     
     public String login(){

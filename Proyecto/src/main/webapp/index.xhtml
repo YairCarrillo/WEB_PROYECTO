@@ -44,7 +44,7 @@
                 </ul>
                 <h:form id="frmLogin" class="form-inline my-2 my-lg-0">
                     <h:inputText id="txtNombre" a:placeholder="Usuario" class="form-control mr-sm-2" value="#{loginBean.dto.entidad.nombreusuario}" required="true" requiredMessage="Ingresa un usuario"/>
-                    <h:inputText id="txtClave" a:placeholder="Contraseña" class="form-control mr-sm-2" value="#{loginBean.dto.entidad.password}" required="true" requiredMessage="Ingresa tu contraseña"/>
+                    <h:inputText id="txtClave" a:placeholder="Contraseña" a:type="password" class="form-control mr-sm-2" value="#{loginBean.dto.entidad.password}" required="true" requiredMessage="Ingresa tu contraseña"/>
                     <h:commandButton id="btnLogin" class="btn btn-outline-success my-2 my-sm-0" value="Iniciar Sesión" action="#{loginBean.login()}" />
                 </h:form>
             </div>

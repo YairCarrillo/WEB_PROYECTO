@@ -1,12 +1,56 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Formulario de Causas</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <ui:composition template="./../plantillas/Plantilla.xhtml">
+            <ui:define name="content">
+                <div class="container" style="padding: 20px;height:1000px">
+                    <div class="card" style="opacity: 90%">
+                        <h5 class="card-header">Causa</h5>
+                        <div class="card-body">
+                            <f:view>
+                                <h:form id="frmCausas">
+                                    <h:inputHidden value="#{causaMB.accion}"/>
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblId" for="txtIdCausa" value="ID de la Causa" rendered="#{causaMB.modoActualizar}"/>
+                                            <h:inputText  class="form-control" id="txtIdCausa" value="#{causaMB.dto.entidad.idCausaHosp}" readonly="true" rendered="#{causaMB.modoActualizar}"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblTratamiento" for="txtTratamiento" value="Tratamiento"/>
+                                            <h:inputText class="form-control"  id="txtTratamiento" value="#{causaMB.dto.entidad.tratamiento}" required="true" requiredMessage="Este campo es obligatorio" maxlength="30"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblObservaciones" for="txtObservaciones" value="Observaciones"/>
+                                            <h:inputText class="form-control" id="txtObservaciones" value="#{causaMB.dto.entidad.observaciones}" required="true" requiredMessage="Este campo es obligatorio" maxlength="50"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-3 offset-md-3">
+                                            <h:commandButton style="width: 100%;margin: 10px" class="btn btn-primary" id="btnEditar" value="Actualizar"
+                                                             action="#{causaMB.actualizar()}" rendered="#{causaMB.modoActualizar}"/>
+                                            <h:commandButton style="width: 100%" class="btn btn-primary" id="btnCreate" value="Crear"
+                                                             action="#{causaMB.crear()}" rendered="#{causaMB.modoCrear}"/>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3 ">
+                                            <h:commandButton style="width: 100%;margin: 10px" class="btn btn-danger" id="btnCancelar" value="Cancelar"
+                                                             action="#{causaMB.back()}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </f:view>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

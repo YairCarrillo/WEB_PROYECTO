@@ -7,6 +7,8 @@ package com.ipn.mx.modelo.entidades;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -19,16 +21,18 @@ import javax.persistence.Table;
 @Table(name = "usuario")
 public class Usuario implements Serializable{
     @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idusuario;
     private String correo;
     private String password;
-    private String nombreusuario;
+    private String nombreusuario;   
     private String paterno;
     private String materno;
     private String nombre;
+    /*
     @Lob
     private byte[] foto;
-
+    */
     public Usuario() {
     }
     
@@ -87,7 +91,7 @@ public class Usuario implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    /*
     public byte[] getFoto() {
         return foto;
     }
@@ -95,7 +99,7 @@ public class Usuario implements Serializable{
     public void setFoto(byte[] foto) {
         this.foto = foto;
     }
-
+    */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -106,7 +110,6 @@ public class Usuario implements Serializable{
         sb.append(", paterno=").append(paterno);
         sb.append(", materno=").append(materno);
         sb.append(", nombre=").append(nombre);
-        sb.append(", foto=").append(foto);
         sb.append('}');
         return sb.toString();
     }

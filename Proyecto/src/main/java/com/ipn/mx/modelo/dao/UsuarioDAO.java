@@ -97,7 +97,7 @@ public class UsuarioDAO {
         List lista = null;
         try{
             transaction.begin();
-            Query query = session.createSQLQuery("from Usuario h where h.nombreusuario=:u and h.password=:p").addEntity(Usuario.class)
+            Query query = session.createSQLQuery("select * from Usuario h where h.nombreusuario=:u and h.password=:p").addEntity(Usuario.class)
                     .setParameter("u", dto.getEntidad().getNombreusuario())
                     .setParameter("p", dto.getEntidad().getPassword());
             lista = query.list();
@@ -121,9 +121,14 @@ public class UsuarioDAO {
     
     public static void main(String[] args) {
         UsuarioDTO dto=new UsuarioDTO();
-        dto.getEntidad().setIdusuario(1);
+        //dto.getEntidad().setNombre("Jonathan");
+        //dto.getEntidad().setPaterno("Perez");
+        //dto.getEntidad().setMaterno("Perez");
+        dto.getEntidad().setNombreusuario("admin");
+        dto.getEntidad().setPassword("admin");
+        //dto.getEntidad().setCorreo("Hola que hace");
         UsuarioDAO dao=new UsuarioDAO();
-        dao.delete(dto);
+        dao.login(dto);
         System.out.println(dto);
     }
 }

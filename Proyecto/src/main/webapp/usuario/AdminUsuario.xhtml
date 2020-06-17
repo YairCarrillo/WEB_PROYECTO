@@ -50,10 +50,12 @@
                                                 <f:facet name="header">Password</f:facet>
                                                 <h:outputText  value="#{dto.password}"></h:outputText>
                                             </h:column>
-                                            <h:column >
+                                            <!--
+                                                <h:column >
                                                 <f:facet name="header">Foto de Perfil</f:facet>
                                                 <h:outputText  value="#{dto.password}"></h:outputText>
-                                            </h:column>
+                                                </h:column>
+                                            -->
                                             <h:column>
                                                 <f:facet name="header">Acciones</f:facet>
                                                 <h:commandButton class="btn btn-primary" style="margin: 10px" id="btnEditar" value="Editar" action="#{usuarioMB.editar()}" actionListener="#{usuarioMB.seleccionarEvento}">

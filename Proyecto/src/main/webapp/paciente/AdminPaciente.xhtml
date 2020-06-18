@@ -14,8 +14,6 @@
         <h:outputScript library="js" name="popper.min.js"/>
         <h:outputScript library="js" name="datatables.min.js"/>
         <h:outputStylesheet library="css" name="datatables.min.css"/>
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
 
     </h:head>
     <h:body >
@@ -28,7 +26,7 @@
                             <f:view>
                                 <h:form id="frmEventos">
                                     <div class="table-responsive">
-                                        <p:dataTable  id="example" styleClass="table table-striped" var="dto" value="#{pacienteMB.listaDePacientes}"
+                                        <p:dataTable  id="example" styleClass="borderless" var="dto" value="#{pacienteMB.listaDePacientes}"
                                                       paginatorPosition="bottom"
                                                       scrollable="true"
                                                       scrollHeight="300">
@@ -51,14 +49,6 @@
                                             <p:column >
                                                 <f:facet name="header">Direccion</f:facet>
                                                 <h:outputText value="#{dto.dir}"></h:outputText>
-                                            </p:column>
-                                            <p:column >
-                                                <f:facet name="header">Estado</f:facet>
-                                                <h:outputText  value="#{dto.idestado}"></h:outputText>
-                                            </p:column>
-                                            <p:column >
-                                                <f:facet name="header">Estado</f:facet>
-                                                <h:outputText  value="#{dto.idmunicipio}"></h:outputText>
                                             </p:column>
                                             <p:column>
                                                 <f:facet name="header">Editar</f:facet>
@@ -90,7 +80,7 @@
             </ui:define>
         </ui:composition> 
         <script>
-            
+
         </script>
     </h:body>
 </html>

@@ -4,10 +4,13 @@
 <hibernate-configuration>
     <session-factory>
         <!-- JDBC Database connection settings -->
+        
+         
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.url">jdbc:postgresql://ec2-52-44-55-63.compute-1.amazonaws.com:5432/denmvmarmuuvcu?sslmode=require</property>
         <property name="connection.username">ntkbequsmrwokb</property>
         <property name="connection.password">bdfb3ebe920f1cac9d88f2ff19b261059014dd77ec5237f28eb84b14ac3706fd</property>
+        
         <!--
         <property name="connection.url">jdbc:postgresql://localhost:5432/hospital?sslmode=require</property>
         <property name="connection.username">postgres</property>
@@ -27,7 +30,7 @@
         <property name="hbm2ddl.auto">none</property>
         <!-- dbcp connection pool configuration -->
         <property name="hibernate.dbcp.initialSize">5</property>
-        <property name="hibernate.dbcp.maxTotal">20</property>
+        <property name="hibernate.dbcp.maxTotal">30</property>
         <property name="hibernate.dbcp.maxIdle">10</property>
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
@@ -39,5 +42,7 @@
         <mapping class="com.ipn.mx.modelo.entidades.Historial" />
         <mapping class="com.ipn.mx.modelo.entidades.Medico" />
         <mapping class="com.ipn.mx.modelo.entidades.Paciente" />
+        <mapping class="com.ipn.mx.modelo.entidades.Municipio" />
+        <mapping class="com.ipn.mx.modelo.entidades.Estado" />
     </session-factory>
 </hibernate-configuration>

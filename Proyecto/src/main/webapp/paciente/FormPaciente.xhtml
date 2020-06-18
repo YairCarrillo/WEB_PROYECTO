@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../plantillas/Plantilla.xhtml">
+            <ui:define name="content">
+                <div class="container" style="padding: 20px;height:1000px">
+                    <div class="card" style="opacity: 90%">
+                        <h5 class="card-header">Usuario</h5>
+                        <div class="card-body">
+                            <f:view>
+                                <h:form id="frmPaciente" enctype="multipart/form-data">
+                                    <h:inputHidden value="#{usuarioMB.accion}"/>
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblId" for="txtIdUsuario" value="CURP" />
+                                            <h:inputText  class="form-control" id="txtIdUsuario" value="#{pacienteMB.dto.entidad.curp}"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblNombre" for="txtNombre" value="Nombre"/>
+                                            <h:inputText class="form-control"  id="txtNombre" value="#{pacienteMB.dto.entidad.nombre}" required="true" requiredMessage="Este campo es obligatorio" maxlength="30"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblEdad" for="txtEdad" value="Edad"/>
+                                            <h:inputText class="form-control" id="txtEdad" value="#{pacienteMB.dto.entidad.edad}" required="true" requiredMessage="Este campo es obligatorio"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblDir" for="txtDir" value="Direcci&oacute;n"/>
+                                            <h:inputTextarea class="form-control" id="txtDir" value="#{pacienteMB.dto.entidad.dir}" required="true" requiredMessage="Este campo es obligatorio" /> 
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblTel" for="txtTel" value="Telefono"/>
+                                            <h:inputText class="form-control" id="txtTel" value="#{pacienteMB.dto.entidad.tel}" required="true" requiredMessage="Este campo es obligatorio" maxlength="50"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblPassword" for="txtPassword" value="Estado"/>
+                                            <h:selectOneMenu class="form-control" id="selEstado" value="#{pacienteMB.dto.entidad.idestado}" required="true" requiredMessage="Este campo es obligatorio">
+                                                <f:selectItems value="#{pacienteMB.listaEstados}"/>
+                                                <f:ajax event="change" listener="#{pacienteMB.changeListMunicipios()}" render="frmPaciente:selMunicipio"/> 
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel  for="txtPassword" value="Municipio"/>
+                                            <h:selectOneMenu id="selMunicipio" class="form-control"  value="#{pacienteMB.dto.entidad.idmunicipio}" required="true" requiredMessage="Este campo es obligatorio">
+                                                <f:selectItems value="#{pacienteMB.listaMunicipios}"/>
+                                                 
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblCorreo" for="txtCorreo" value="Correo"/>
+                                            <h:inputText class="form-control" id="txtCorreo" value="" required="true" requiredMessage="Este campo es obligatorio"/>
+                                        </div>
+                                    </div>
+          
+                                </h:form>
+
+                            </f:view>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

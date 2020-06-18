@@ -5,8 +5,14 @@
  */
 package com.ipn.mx.web.bean;
 
+import com.ipn.mx.modelo.dao.EstadoDAO;
+import com.ipn.mx.modelo.dao.MunicipioDAO;
 import com.ipn.mx.modelo.dao.PacienteDAO;
+import com.ipn.mx.modelo.dto.EstadoDTO;
+import com.ipn.mx.modelo.dto.MunicipioDTO;
 import com.ipn.mx.modelo.dto.PacienteDTO;
+import com.ipn.mx.modelo.entidades.Estado;
+import com.ipn.mx.modelo.entidades.Municipio;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +21,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -25,7 +32,8 @@ import javax.faces.event.ActionEvent;
 public class PacienteMB extends BaseBean implements Serializable{
     private PacienteDTO dto;
     private PacienteDAO dao = new PacienteDAO();
-    private List<PacienteDTO> listaDePacientes; 
+    private List<PacienteDTO> listaDePacientes;
+    private List<SelectItem> listaMunicipios;
     /**
      * Creates a new instance of UsuarioMB
      */
@@ -35,6 +43,7 @@ public class PacienteMB extends BaseBean implements Serializable{
     @PostConstruct
     public void init(){
         listaDePacientes = new ArrayList<>();
+        listaMunicipios = new ArrayList<>();
         listaDePacientes = dao.readAll();
     }
     public String nuevo(){
@@ -98,6 +107,26 @@ public class PacienteMB extends BaseBean implements Serializable{
             ex.printStackTrace();
         }
     }
+    public List<SelectItem> getListaEstados(){
+        EstadoDAO dao=new EstadoDAO();
+        List list=dao.readAll();
+        List<SelectItem> select=new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            Estado entidad = (Estado) list.get(i);
+            select.add(new SelectItem(entidad.getIdestado(),entidad.getNombre()));
+        }
+        return select;
+    }
+    public void changeListMunicipios(){
+        MunicipioDTO dtoM=new MunicipioDTO();
+        MunicipioDAO daoM=new MunicipioDAO();
+        listaMunicipios=new ArrayList<>();
+        dtoM.getEntidad().setIdestado(dto.getEntidad().getIdestado());
+        List<Municipio> list=daoM.readEstado(dtoM);
+        for(int i=0;i<list.size();i++){
+            listaMunicipios.add(new SelectItem(list.get(i).getIdmunicipio(),list.get(i).getNombre()));
+        }
+    }
     public PacienteDTO getDto() {
         return dto;
     }
@@ -121,5 +150,14 @@ public class PacienteMB extends BaseBean implements Serializable{
     public void setListaDePacientes(List<PacienteDTO> listaDeUsuarios) {
         this.listaDePacientes = listaDeUsuarios;
     }
+
+    public List<SelectItem> getListaMunicipios() {
+        return listaMunicipios;
+    }
+
+    public void setListaMunicipios(List<SelectItem> listaMunicipios) {
+        this.listaMunicipios = listaMunicipios;
+    }
+    
     
 }

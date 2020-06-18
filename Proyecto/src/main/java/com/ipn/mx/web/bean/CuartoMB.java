@@ -52,7 +52,7 @@ public class CuartoMB extends BaseBean implements Serializable {
     public String back(){
         init();
         
-        return "/Principal?faces-redirect=true";
+        return "/cuarto/AdminCuarto?faces-redirect=true";
     }
     
     public String prepareIndex(){

@@ -30,19 +30,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="/Proyecto/faces/Principal.xhtml">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Usuarios</a>
+                                <a class="nav-link" href="#{usuarioMB.prepareIndex()}">Usuarios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Pacientes</a>
+                                <a class="nav-link" href="#{pacienteMB.prepareIndex()}">Pacientes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Causas</a>
+                                <a class="nav-link" href="#{causaMB.prepareIndex()}">Causas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Cuartos</a>
+                                <a class="nav-link" href="#{cuartoMB.prepareIndex()}">Cuartos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Médicos</a>
@@ -64,8 +64,8 @@
 
         <div id="bottom">
             <ui:insert name="bottom">
-                <div class="footer-copyright text-center py-3">© 2020 Copyright:<br></br>
-                    Carrillo Balcazar Eduardo Yair | Melendez Macedonio Jonathan
+                <div class="footer-copyright text-center py-3 fixed-bottom">© 2020 Copyright:<br></br>
+                    Carrillo Balcazar Eduardo Yair | Mel&eacute;ndez Macedonio Jonathan
                 </div>
         </ui:insert>
         </div>

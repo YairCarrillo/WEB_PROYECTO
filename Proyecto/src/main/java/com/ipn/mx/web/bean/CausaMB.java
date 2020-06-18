@@ -52,7 +52,7 @@ public class CausaMB extends BaseBean implements Serializable {
     public String back(){
         init();
         
-        return "/Principal?faces-redirect=true";
+        return "/causa/AdminCausa?faces-redirect=true";
     }
     
     public String prepareIndex(){
@@ -68,7 +68,7 @@ public class CausaMB extends BaseBean implements Serializable {
             return prepareIndex();
         }catch(Exception e){
             error("ErrorCrearCausa", "Error al crear causa");
-            return "/causa/FormCausa?faces-redirect=true";
+            return "/Proyecto/faces/causa/FormCausa.xhtml";
         }
     }
     
@@ -90,7 +90,7 @@ public class CausaMB extends BaseBean implements Serializable {
             return prepareIndex();
         }catch(Exception e){
             error("ErrorBorrarCausa", "Error al borrar la causa");
-            return "/causa/FormCausa?faces-redirect=true";
+            return "/Proyecto/faces/causa/FormCausa.xhtml";
         }
     }
     

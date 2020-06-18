@@ -6,7 +6,6 @@
 package com.ipn.mx.web.bean;
 
 import com.ipn.mx.modelo.dao.EdoCuartoDAO;
-import com.ipn.mx.modelo.dto.CuartoDTO;
 import com.ipn.mx.modelo.dto.EdoCuartoDTO;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;

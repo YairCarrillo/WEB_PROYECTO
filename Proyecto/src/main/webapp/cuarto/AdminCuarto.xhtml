@@ -25,16 +25,19 @@
                             <f:view>
                                 <h:form id="frmCuartos">
                                     <div class="table-responsive">
-                                        <h:dataTable class="table table-striped" var="dto" value="#{cuartoMB.listaDeCuartos}">
-                                            <h:column rowHeader="thead-dark">
+                                        <p:dataTable class="table table-striped" var="dto" value="#{cuartoMB.listaDeCuartos}"
+                                                     paginatorPosition="bottom"
+                                                     scrollable="true"
+                                                     scrollHeight="300">>
+                                            <p:column>
                                                 <f:facet  name="header"> N&uacute;mero del cuarto</f:facet>
                                                 <h:outputText value="#{dto.noCuarto}"></h:outputText>
-                                            </h:column>
-                                            <h:column>
+                                            </p:column>
+                                            <p:column>
                                                 <f:facet name="header">ID del estado del cuarto</f:facet>
                                                 <h:outputText value="#{dto.idedoCuarto}"></h:outputText>
-                                            </h:column>
-                                            <h:column>
+                                            </p:column>
+                                            <p:column>
                                                 <f:facet name="header">Acciones</f:facet>
                                                 <h:commandButton class="btn btn-primary" style="margin: 10px" id="btnEditar" value="Editar" action="#{cuartoMB.editar()}" actionListener="#{cuartoMB.seleccionarCuarto}">
                                                     <f:param name="claveSel" value="#{dto.noCuarto}"/>
@@ -42,8 +45,8 @@
                                                 <h:commandButton class="btn btn-danger" style="margin: 10px" id="btnDelete" value="Borrar" action="#{cuartoMB.borrar()}" actionListener="#{cuartoMB.seleccionarCuarto}">
                                                     <f:param name="claveSel" value="#{dto.noCuarto}"/>
                                                 </h:commandButton> 
-                                            </h:column>
-                                        </h:dataTable> 
+                                            </p:column>
+                                        </p:dataTable> 
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-4 offset-sm-4">

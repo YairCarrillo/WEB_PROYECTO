@@ -25,20 +25,23 @@
                             <f:view>
                                 <h:form id="frmCausas">
                                     <div class="table-responsive">
-                                        <h:dataTable class="table table-striped" var="dto" value="#{causaMB.listaDeCausas}">
-                                            <h:column rowHeader="thead-dark">
+                                        <p:dataTable class="table table-striped" var="dto" value="#{causaMB.listaDeCausas}" 
+                                                     paginatorPosition="bottom"
+                                                     scrollable="true"
+                                                     scrollHeight="300">
+                                            <p:column>
                                                 <f:facet  name="header"> ID de la causa</f:facet>
                                                 <h:outputText value="#{dto.idCausaHosp}"></h:outputText>
-                                            </h:column>
-                                            <h:column>
+                                            </p:column>
+                                            <p:column>
                                                 <f:facet name="header">Tratamiento</f:facet>
                                                 <h:outputText value="#{dto.tratamiento}"></h:outputText>
-                                            </h:column>
-                                            <h:column>
+                                            </p:column>
+                                            <p:column>
                                                 <f:facet name="header">Observaciones</f:facet>
                                                 <h:outputText value="#{dto.observaciones}"></h:outputText>
-                                            </h:column>
-                                            <h:column>
+                                            </p:column>
+                                            <p:column>
                                                 <f:facet name="header">Acciones</f:facet>
                                                 <h:commandButton class="btn btn-primary" style="margin: 10px" id="btnEditar" value="Editar" action="#{causaMB.editar()}" actionListener="#{causaMB.seleccionarCausa}">
                                                     <f:param name="claveSel" value="#{dto.idCausaHosp}"/>
@@ -46,8 +49,8 @@
                                                 <h:commandButton class="btn btn-danger" style="margin: 10px" id="btnDelete" value="Borrar" action="#{causaMB.borrar()}" actionListener="#{causaMB.seleccionarCausa}">
                                                     <f:param name="claveSel" value="#{dto.idCausaHosp}"/>
                                                 </h:commandButton> 
-                                            </h:column>
-                                        </h:dataTable> 
+                                            </p:column>
+                                        </p:dataTable> 
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-4 offset-sm-4">

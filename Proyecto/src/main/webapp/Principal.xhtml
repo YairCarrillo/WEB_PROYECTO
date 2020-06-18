@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
@@ -11,52 +12,97 @@
         <h:outputScript library="js" name="jquery-3.5.1.slim.min.js"/>
         <h:outputScript library="js" name="popper.min.js"/>
     </h:head>
-    <h:body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Hospital Web</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <h:body style=" background-image:url('./../resources/img/fondo2.jpg'); height: 50%;background-position: center;background-repeat: no-repeat;background-size: cover;">
+        <c:choose>
+            <c:when test="#{nombreUsuario != null}">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">Hospital Web</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#{usuarioMB.prepareIndex()}">Usuarios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pacientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#{causaMB.prepareIndex()}">Causas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#{cuartoMB.prepareIndex()}">Cuartos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Médicos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Especialidad</a>
-                    </li>
-                </ul>
-                <h:form id="frmPrincipal" class="form-inline my-2 my-lg-0">
-                    <h:outputText value="Bienvenido, #{nombreUsuario}" style="padding: 20px" />
-                    <h:commandButton id="btnLogout" class="btn btn-outline-success my-2 my-sm-0" value="Cerrar Sesión" action="#{loginBean.logout()}" />
-                </h:form>
-            </div>
-        </nav>
-        
-        
-        <div class="fixed-bottom">
-            <div class="mx-auto" >
-                <div class="p-3 mb-2 bg-light text-dark" >
-                    | 1997-2020 &copy; Carrillo Bálcazar Eduardo Yair | 1998-2020 &copy; Meléndez Macedonio Jonathan | All Rights Reserved | Escuela Superior de Cómputo | Instituto Politécnico Nacional |
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#{usuarioMB.prepareIndex()}">Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pacientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#{causaMB.prepareIndex()}">Causas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Cuartos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Médicos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Especialidad</a>
+                            </li>
+                        </ul>
+                        <h:form id="frmPrincipal" class="form-inline my-2 my-lg-0">
+                            <h:outputText value="Bienvenido, #{nombreUsuario}" style="padding: 20px" />
+                            <h:commandButton id="btnLogout" class="btn btn-outline-success my-2 my-sm-0" value="Cerrar Sesión" action="#{loginBean.logout()}" />
+                        </h:form>
+                    </div>
+                </nav>
+
+
+                <div class="fixed-bottom">
+                    <div class="mx-auto" >
+                        <div class="p-3 mb-2 bg-light text-dark" >
+                            | 1997-2020 &copy; Carrillo Bálcazar Eduardo Yair | 1998-2020 &copy; Meléndez Macedonio Jonathan | All Rights Reserved | Escuela Superior de Cómputo | Instituto Politécnico Nacional |
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </c:when>
+            <c:otherwise>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">Hospital Web</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">No</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">deberias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">estar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">aqu&iacute;</a>
+                            </li>
+                        </ul>
+                        <h:form id="frmPrincipal" class="form-inline my-2 my-lg-0">
+                            <h:outputText value="No te reconozco" style="padding: 20px" />
+                            <h:commandButton id="btnLogout" class="btn btn-outline-success my-2 my-sm-0" value="Iniciar Sesión" action="index?faces-redirect=true" />
+                        </h:form>
+                    </div>
+                </nav>
+                
+                <div class="fixed-bottom">
+                    <div class="mx-auto">
+                        <div class="p-3 mb-2 bg-light text-dark">
+                            | 1997-2020 &copy; Carrillo Bálcazar Eduardo Yair | 1998-2020 &copy; Meléndez Macedonio Jonathan | All Rights Reserved | Escuela Superior de Cómputo | Instituto Politécnico Nacional |
+                        </div>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
+                
     </h:body>
 </html>
 

@@ -15,15 +15,17 @@ import javax.persistence.Table;
  * @author yirz
  */
 @Entity
-@Table(name="paciente")
-public class Paciente implements Serializable{
-   
-   @Id
-   private String curp;
-   private String nombre;
-   private int edad;
-   private String dir;
-   private int tel;
+@Table(name = "paciente")
+public class Paciente implements Serializable {
+
+    @Id
+    private String curp;
+    private String nombre;
+    private int edad;
+    private String dir;
+    private int tel;
+    private int idestado;
+    private int idmunicipio;
 
     public Paciente() {
     }
@@ -68,6 +70,22 @@ public class Paciente implements Serializable{
         this.tel = tel;
     }
 
+    public int getIdestado() {
+        return idestado;
+    }
+
+    public void setIdestado(int idestado) {
+        this.idestado = idestado;
+    }
+
+    public int getIdmunicipio() {
+        return idmunicipio;
+    }
+
+    public void setIdmunicipio(int idmunicipio) {
+        this.idmunicipio = idmunicipio;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -76,7 +94,10 @@ public class Paciente implements Serializable{
         sb.append(", edad=").append(edad);
         sb.append(", dir=").append(dir);
         sb.append(", tel=").append(tel);
+        sb.append(", idestado=").append(idestado);
+        sb.append(", idmunicipio=").append(idmunicipio);
         sb.append('}');
         return sb.toString();
-    }   
+    }
+    
 }

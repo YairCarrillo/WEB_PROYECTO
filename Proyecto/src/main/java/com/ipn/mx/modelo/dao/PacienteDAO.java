@@ -84,9 +84,13 @@ public class PacienteDAO {
         Transaction transaction = session.getTransaction();
         transaction.begin();
         List<PacienteDTO> lista;
-        Query query = session.createQuery("from paciente h order by h.curp");
+        Query query = session.createQuery("from Paciente h order by h.curp");
         lista = query.list();
         transaction.commit();
         return lista;       
+    }
+    public static void main(String[] args) {
+        PacienteDAO dao=new PacienteDAO();
+        System.out.println(dao.readAll());
     }
 }

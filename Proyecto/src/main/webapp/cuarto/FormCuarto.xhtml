@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Formulario de Cuartos</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../plantillas/Plantilla.xhtml">
+            <ui:define name="content">
+                <div class="container" style="padding: 20px;height:1000px">
+                    <div class="card" style="opacity: 90%">
+                        <h5 class="card-header">Cuarto</h5>
+                        <div class="card-body">
+                            <f:view>
+                                <h:form id="frmCuartos">
+                                    <h:inputHidden value="#{cuartoMB.accion}"/>
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblId" for="txtNoCuarto" value="No. del cuarto" rendered="#{cuartoMB.modoActualizar}"/>
+                                            <h:inputText  class="form-control" id="txtNoCuarto" value="#{cuartoMB.dto.entidad.noCuarto}" readonly="true" rendered="#{cuartoMB.modoActualizar}"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblTratamiento" for="txtIdEdoCuarto" value="ID del estado del cuarto"/>
+                                            <h:inputText class="form-control"  id="txtIdEdoCuarto" value="#{cuartoMB.dto.entidad.idedoCuarto}" required="true" requiredMessage="Este campo es obligatorio" maxlength="30"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-3 offset-md-3">
+                                            <h:commandButton style="width: 100%;margin: 10px" class="btn btn-primary" id="btnEditar" value="Actualizar"
+                                                             action="#{cuartoMB.actualizar()}" rendered="#{cuartoMB.modoActualizar}"/>
+                                            <h:commandButton style="width: 100%" class="btn btn-primary" id="btnCreate" value="Crear"
+                                                             action="#{cuartoMB.crear()}" rendered="#{cuartoMB.modoCrear}"/>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3 ">
+                                            <h:commandButton style="width: 100%;margin: 10px" class="btn btn-danger" id="btnCancelar" value="Cancelar"
+                                                             action="#{cuartoMB.back()}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </f:view>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

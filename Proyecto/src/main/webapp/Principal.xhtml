@@ -43,11 +43,20 @@
                     </li>
                 </ul>
                 <h:form id="frmPrincipal" class="form-inline my-2 my-lg-0">
-                    <h:outputText value="Bienvenido, #{nombreUsuario}" />
+                    <h:outputText value="Bienvenido, #{nombreUsuario}" style="padding: 20px" />
                     <h:commandButton id="btnLogout" class="btn btn-outline-success my-2 my-sm-0" value="Cerrar Sesión" action="#{loginBean.logout()}" />
                 </h:form>
             </div>
         </nav>
+        
+        
+        <div class="fixed-bottom">
+            <div class="mx-auto" >
+                <div class="p-3 mb-2 bg-light text-dark" >
+                    | 1997-2020 &copy; Carrillo Bálcazar Eduardo Yair | 1998-2020 &copy; Meléndez Macedonio Jonathan | All Rights Reserved | Escuela Superior de Cómputo | Instituto Politécnico Nacional |
+                </div>
+            </div>
+        </div>
     </h:body>
 </html>
 

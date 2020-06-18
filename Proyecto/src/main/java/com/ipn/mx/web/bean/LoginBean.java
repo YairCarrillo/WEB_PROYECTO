@@ -41,7 +41,8 @@ public class LoginBean extends BaseBean implements Serializable {
 
             return "/Principal?faces-redirect=true";
         }else{
-            return "/index?faces-redirect=true";
+            error("ErrorSession","Usuario o Contraseña invalidos");
+            return null;
         }
     }
     

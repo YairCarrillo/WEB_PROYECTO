@@ -2,24 +2,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Hospital Web</title>
 
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="login.css"/>
         <h:outputScript library="js" name="bootstrap.min.js"/>
         <h:outputScript library="js" name="jquery-3.5.1.slim.min.js"/>
         <h:outputScript library="js" name="popper.min.js"/>
     </h:head>
     <h:body style=" background-image:url('./../resources/img/fondo2.jpg'); height: 50%;background-position: center;background-repeat: no-repeat;background-size: cover;">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 90%">
             <a class="navbar-brand" href="#">Hospital Web</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto" style="opacity: 100%">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
@@ -42,15 +44,33 @@
                         <a class="nav-link" href="#">Especialidad</a>
                     </li>
                 </ul>
-                <h:form id="frmLogin" class="form-inline my-2 my-lg-0">
-                    <h:inputText id="txtNombre" a:placeholder="Usuario" class="form-control mr-sm-2" value="#{loginBean.dto.entidad.nombreusuario}" required="true" requiredMessage="Ingresa un usuario"/>
-                    <h:inputText id="txtClave" a:placeholder="Contraseña" a:type="password" class="form-control mr-sm-2" value="#{loginBean.dto.entidad.password}" required="true" requiredMessage="Ingresa tu contraseña"/>
-                    <h:commandButton id="btnLogin" class="btn btn-outline-success my-2 my-sm-0" value="Iniciar Sesión" action="#{loginBean.login()}" />
-                </h:form>
+
             </div>
         </nav>
+        <div class="container">
+            <div class="wrapper fadeInDown" >
+                <div id="formContent" style="opacity: 95%">
+                    <!-- Tabs Titles -->
 
-        <div class="fixed-bottom">
+                    <!-- Icon -->
+                    <div class="fadeIn first">
+                        <img src="./resources/img/User.webp" style="width: 40px;height: 40px;margin: 30px" id="icon" alt="User Icon" />
+                    </div>
+                    <h:form id="frmLogin" >
+                        <p:inputText id="txtNombre" a:placeholder="Usuario" class="fadeIn second" value="#{loginBean.dto.entidad.nombreusuario}" required="true" requiredMessage="Ingresa un usuario"/>
+                        <p:inputText id="txtClave" a:placeholder="Contraseña" a:type="password" class="fadeIn third" value="#{loginBean.dto.entidad.password}" required="true" requiredMessage="Ingresa tu contraseña"/>
+                        <p:commandButton id="btnLogin" style="margin: 20px" class="fadeIn fourth" value="Iniciar Sesión" action="#{loginBean.login()}" update="ErrorSession"/>
+                        <div class="container">
+                            <p:messages id="ErrorSession"/>
+                        </div>
+                        
+                    </h:form>
+                    <!-- Login Form -->
+
+                </div>
+            </div>
+        </div>
+        <div class="fixed-bottom" style="opacity: 90%">
             <div class="mx-auto">
                 <div class="p-3 mb-2 bg-light text-dark">
                     | 1997-2020 &copy; Carrillo Bálcazar Eduardo Yair | 1998-2020 &copy; Meléndez Macedonio Jonathan | All Rights Reserved | Escuela Superior de Cómputo | Instituto Politécnico Nacional |

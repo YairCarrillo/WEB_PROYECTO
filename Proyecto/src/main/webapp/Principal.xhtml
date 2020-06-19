@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Hospital Web</title>
 
@@ -21,30 +22,37 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#{usuarioMB.prepareIndex()}">Usuarios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#{pacienteMB.prepareIndex()}">Pacientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#{causaMB.prepareIndex()}">Causas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#{cuartoMB.prepareIndex()}">Cuartos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Médicos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Especialidad</a>
-                    </li>
-                </ul>
+
                 <h:form id="frmPrincipal" class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <h:commandLink class="nav-link" value="Home" action="/Principal?faces-redirect=true"/>
+                        </li>
+                        <li class="nav-item active">
+                            <h:commandLink class="nav-link"  value="Usuarios" action="/usuario/AdminUsuario?faces-redirect=true"/>
+                        </li>
+                        <li class="nav-item active">
+                            <h:commandLink class="nav-link"  value="Pacientes" action="/paciente/AdminPaciente?faces-redirect=true"/>
+                        </li>
+                        <li class="nav-item active">
+                            <h:commandLink class="nav-link"  value="Causas" action="/causa/AdminCausa?faces-redirect=true"/>
+                        </li>
+                        <li class="nav-item active">
+                            <h:commandLink class="nav-link"  value="Cuartos" action="/cuarto/AdminCuarto?faces-redirect=true"/>
+                        </li>
+                        <li class="nav-item active">
+                            <h:commandLink class="nav-link"  value="Estado de Cuartos" action="/edocuarto/AdminEdoCuarto?faces-redirect=true"/>
+                        </li>
+                        <li class="nav-item active">
+                            <h:commandLink class="nav-link"  value="Medicos" action="/edocuarto/AdminEdoCuarto?faces-redirect=true"/>
+                        </li>
+                        <li class="nav-item active">
+                            <h:commandLink class="nav-link"  value="Especialidades" action="/edocuarto/AdminEdoCuarto?faces-redirect=true"/>
+                        </li>
+                    </ul>
+                </h:form>
+
+                <h:form >
                     <h:outputText value="Bienvenido, #{nombreUsuario}" style="padding: 20px" />
                     <h:commandButton id="btnLogout" class="btn btn-outline-success my-2 my-sm-0" value="Cerrar Sesión" action="#{loginBean.logout()}" />
                 </h:form>

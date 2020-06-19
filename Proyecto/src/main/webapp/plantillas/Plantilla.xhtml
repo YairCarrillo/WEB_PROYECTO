@@ -31,30 +31,32 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                
-                                <a class="nav-link" href="/Proyecto/faces/"> <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#{usuarioMB.prepareIndex()}">Usuarios</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#{pacienteMB.prepareIndex()}">Pacientes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#{causaMB.prepareIndex()}">Causas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#{cuartoMB.prepareIndex()}">Cuartos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Médicos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Especialidad</a>
-                            </li>
-                        </ul>
+
+                        <h:form id="frmPrincipal" class="form-inline my-2 my-lg-0">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <h:commandLink class="nav-link" value="Home" action="/Principal?faces-redirect=true"/>
+                                </li>
+                                <li class="nav-item active">
+                                    <h:commandLink class="nav-link"  value="Usuarios" action="/usuario/AdminUsuario?faces-redirect=true"/>
+                                </li>
+                                <li class="nav-item active">
+                                    <h:commandLink class="nav-link"  value="Pacientes" action="/paciente/AdminPaciente?faces-redirect=true"/>
+                                </li>
+                                <li class="nav-item active">
+                                    <h:commandLink class="nav-link"  value="Causas" action="/causa/AdminCausa?faces-redirect=true"/>
+                                </li>
+                                <li class="nav-item active">
+                                    <h:commandLink class="nav-link"  value="Cuartos" action="/cuarto/AdminCuarto?faces-redirect=true"/>
+                                </li>
+                                <li class="nav-item active">
+                                    <h:commandLink class="nav-link"  value="Medicos" action="/edocuarto/AdminEdoCuarto?faces-redirect=true"/>
+                                </li>
+                                <li class="nav-item active">
+                                    <h:commandLink class="nav-link"  value="Especialidades" action="/edocuarto/AdminEdoCuarto?faces-redirect=true"/>
+                                </li>
+                            </ul>
+                        </h:form>
                     </div>
                 </nav>
             </ui:insert>
@@ -71,7 +73,7 @@
                 <div class="footer-copyright text-center py-3 fixed-bottom">© 2020 Copyright:<br></br>
                     Carrillo Balcazar Eduardo Yair | Mel&eacute;ndez Macedonio Jonathan
                 </div>
-        </ui:insert>
+            </ui:insert>
         </div>
 
     </h:body>

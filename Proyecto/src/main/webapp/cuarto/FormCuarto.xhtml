@@ -30,22 +30,21 @@
                                         </div>
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblIdEdoCuarto" for="txtIdEdoCuarto" value="ID del estado del cuarto"/>
-                                            <h:selectOneMenu value="#{cuartoMB.dto.entidad.idedoCuarto}">
+                                            <h:selectOneMenu value="#{cuartoMB.dto.entidad.idedoCuarto}" class="custom-select">
                                                 <c:forEach items="#{edoCuartoMB.lista}" var="cuartos">
                                                     <f:selectItem itemValue="#{cuartos.idedoCuarto}" itemLabel="#{cuartos.edoCuarto}"/>
                                                 </c:forEach>
                                             </h:selectOneMenu>
-                                            <h:inputText class="form-control"  id="txtIdEdoCuarto" value="#{cuartoMB.dto.entidad.idedoCuarto}" required="true" requiredMessage="Este campo es obligatorio" maxlength="30"/>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-3 offset-md-3">
+                                        <div class="col-sm-12 col-md-4 offset-md-4">
                                             <h:commandButton style="width: 100%;margin: 10px" class="btn btn-primary" id="btnEditar" value="Actualizar"
                                                              action="#{cuartoMB.actualizar()}" rendered="#{cuartoMB.modoActualizar}"/>
-                                            <h:commandButton style="width: 100%" class="btn btn-primary" id="btnCreate" value="Crear"
+                                            <h:commandButton style="width: 100%;margin: 10px" class="btn btn-primary" id="btnCreate" value="Crear"
                                                              action="#{cuartoMB.crear()}" rendered="#{cuartoMB.modoCrear}"/>
                                         </div>
-                                        <div class="col-sm-12 col-md-3 ">
+                                        <div class="col-sm-12 col-md-4 offset-md-4">
                                             <h:commandButton style="width: 100%;margin: 10px" class="btn btn-danger" id="btnCancelar" value="Cancelar"
                                                              action="#{cuartoMB.back()}"/>
                                         </div>

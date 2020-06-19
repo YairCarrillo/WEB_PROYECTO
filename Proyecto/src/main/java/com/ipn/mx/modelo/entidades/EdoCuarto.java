@@ -18,17 +18,17 @@ import javax.persistence.Table;
 @Table(name = "edocuarto")
 public class EdoCuarto implements Serializable{
     @Id
-    private String idedoCuarto;
+    private int idedoCuarto;
     private String edoCuarto;
 
     public EdoCuarto() {
     }
 
-    public String getIdedoCuarto() {
+    public int getIdedoCuarto() {
         return idedoCuarto;
     }
 
-    public void setIdedoCuarto(String idedoCuarto) {
+    public void setIdedoCuarto(int idedoCuarto) {
         this.idedoCuarto = idedoCuarto;
     }
 

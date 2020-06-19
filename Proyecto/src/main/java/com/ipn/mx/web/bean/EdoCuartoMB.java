@@ -24,7 +24,7 @@ import javax.faces.event.ActionEvent;
 @SessionScoped
 public class EdoCuartoMB extends BaseBean implements Serializable {
     private EdoCuartoDTO dto;
-    private EdoCuartoDAO dao;
+    private EdoCuartoDAO dao = new EdoCuartoDAO();
     private List<EdoCuartoDTO> lista;
     
     public EdoCuartoMB() {
@@ -96,7 +96,7 @@ public class EdoCuartoMB extends BaseBean implements Serializable {
     public void seleccionarEdoCuarto(ActionEvent event) {
         String claveSel = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("claveSel");
         dto = new EdoCuartoDTO();
-        dto.getEntidad().setIdedoCuarto(claveSel);
+        dto.getEntidad().setIdedoCuarto(Integer.parseInt(claveSel));
         
         try {
             dto = dao.read(dto);

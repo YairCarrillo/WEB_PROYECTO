@@ -68,7 +68,7 @@ public class CausaMB extends BaseBean implements Serializable {
             return prepareIndex();
         }catch(Exception e){
             error("ErrorCrearCausa", "Error al crear causa");
-            return "/Proyecto/faces/causa/FormCausa.xhtml";
+            return "/causa/FormCausa.xhtml";
         }
     }
     
@@ -90,7 +90,7 @@ public class CausaMB extends BaseBean implements Serializable {
             return prepareIndex();
         }catch(Exception e){
             error("ErrorBorrarCausa", "Error al borrar la causa");
-            return "/Proyecto/faces/causa/FormCausa.xhtml";
+            return "/causa/FormCausa.xhtml";
         }
     }
     

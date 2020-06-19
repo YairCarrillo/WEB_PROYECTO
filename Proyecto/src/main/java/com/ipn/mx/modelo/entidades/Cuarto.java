@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Cuarto implements Serializable{
     @Id
     private int noCuarto;
-    private String idedoCuarto;
+    private int idedoCuarto;
 
     public Cuarto() {
     }
@@ -31,11 +31,11 @@ public class Cuarto implements Serializable{
         this.noCuarto = noCuarto;
     }
 
-    public String getIdedoCuarto() {
+    public int getIdedoCuarto() {
         return idedoCuarto;
     }
 
-    public void setIdedoCuarto(String idedoCuarto) {
+    public void setIdedoCuarto(int idedoCuarto) {
         this.idedoCuarto = idedoCuarto;
     }
 

@@ -32,6 +32,11 @@ public class MunicipioDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public void update(MunicipioDTO dto){
@@ -45,6 +50,11 @@ public class MunicipioDAO {
         }catch(HibernateException he){
             if(transaction != null && transaction.isActive()){
                 transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
             }
         }
     }
@@ -62,6 +72,11 @@ public class MunicipioDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public MunicipioDTO read(MunicipioDTO dto){
@@ -77,6 +92,11 @@ public class MunicipioDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
         return dto;
     }
     
@@ -88,6 +108,7 @@ public class MunicipioDAO {
         Query query = session.createQuery("from Municipio h order by h.idmunicipio");
         lista = query.list();
         transaction.commit();
+        session.close();
         return lista;       
     }
     public List<Municipio> readEstado(MunicipioDTO dto){
@@ -99,6 +120,7 @@ public class MunicipioDAO {
                 .setParameter("u", dto.getEntidad().getIdestado());
         lista = query.list();
         transaction.commit();
+        session.close();
         return lista;       
     } 
     public static void main(String[] args) {

@@ -31,6 +31,11 @@ public class HistorialDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public void update(HistorialDTO dto){
@@ -44,6 +49,11 @@ public class HistorialDAO {
         }catch(HibernateException he){
             if(transaction != null && transaction.isActive()){
                 transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
             }
         }
     }
@@ -61,6 +71,11 @@ public class HistorialDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public HistorialDTO read(HistorialDTO dto){
@@ -76,6 +91,11 @@ public class HistorialDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
         return dto;
     }
     
@@ -87,6 +107,7 @@ public class HistorialDAO {
         Query query = session.createQuery("from Historial h order by h.idhistorial");
         lista = query.list();
         transaction.commit();
+        session.close();
         return lista;       
     }
 }

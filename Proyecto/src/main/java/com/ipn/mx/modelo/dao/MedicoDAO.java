@@ -31,6 +31,11 @@ public class MedicoDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public void update(MedicoDTO dto){
@@ -44,6 +49,11 @@ public class MedicoDAO {
         }catch(HibernateException he){
             if(transaction != null && transaction.isActive()){
                 transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
             }
         }
     }
@@ -61,6 +71,11 @@ public class MedicoDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public MedicoDTO read(MedicoDTO dto){
@@ -76,6 +91,11 @@ public class MedicoDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
         return dto;
     }
     
@@ -87,6 +107,7 @@ public class MedicoDAO {
         Query query = session.createQuery("from medico h order by h.cedula");
         lista = query.list();
         transaction.commit();
+        session.close();
         return lista;       
     }
 }

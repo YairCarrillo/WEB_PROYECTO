@@ -18,75 +18,104 @@ import org.hibernate.query.Query;
  * @author jonathan
  */
 public class CausaHospDAO {
-    public void create(CausaHospDTO dto){
+
+    public void create(CausaHospDTO dto) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = session.getTransaction();
-        
-        try{
+
+        try {
             transaction.begin();
             session.save(dto.getEntidad());
             transaction.commit();
-        }catch(HibernateException he){
-            if(transaction != null && transaction.isActive()){
+        } catch (HibernateException he) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
             }
         }
     }
-    
-    public void update(CausaHospDTO dto){
+
+    public void update(CausaHospDTO dto) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = session.getTransaction();
-        
-        try{
+
+        try {
             transaction.begin();
             session.update(dto.getEntidad());
             transaction.commit();
-        }catch(HibernateException he){
-            if(transaction != null && transaction.isActive()){
+        } catch (HibernateException he) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
             }
         }
     }
-    
-    public void delete(CausaHospDTO dto){
+
+    public void delete(CausaHospDTO dto) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = session.getTransaction();
-        
-        try{
+
+        try {
             transaction.begin();
             session.delete(dto.getEntidad());
             transaction.commit();
-        }catch(HibernateException he){
-            if(transaction != null && transaction.isActive()){
+        } catch (HibernateException he) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
             }
         }
     }
-    
-    public CausaHospDTO read(CausaHospDTO dto){
+
+    public CausaHospDTO read(CausaHospDTO dto) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = session.getTransaction();
-        
-        try{
+
+        try {
             transaction.begin();
             dto.setEntidad(session.get(dto.getEntidad().getClass(), dto.getEntidad().getIdCausaHosp()));
             transaction.commit();
-        }catch(HibernateException he){
-            if(transaction != null && transaction.isActive()){
+        } catch (HibernateException he) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
             }
         }
         return dto;
     }
-    
-    public List<CausaHospDTO> readAll(){
+
+    public List<CausaHospDTO> readAll() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = session.getTransaction();
-        transaction.begin();
-        List<CausaHospDTO> lista;
-        Query query = session.createQuery("from CausaHosp c order by c.idCausaHosp");
-        lista = query.list();
-        transaction.commit();
-        return lista;       
+        List<CausaHospDTO> lista = null;
+        try {
+            transaction.begin();    
+            Query query = session.createQuery("from CausaHosp c order by c.idCausaHosp");
+            lista = query.list();
+            transaction.commit();
+        }
+        catch (HibernateException he) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+        }finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return lista;
     }
 }

@@ -31,6 +31,11 @@ public class EdoCuartoDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public void update(EdoCuartoDTO dto){
@@ -44,6 +49,11 @@ public class EdoCuartoDAO {
         }catch(HibernateException he){
             if(transaction != null && transaction.isActive()){
                 transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
             }
         }
     }
@@ -61,6 +71,11 @@ public class EdoCuartoDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public EdoCuartoDTO read(EdoCuartoDTO dto){
@@ -76,6 +91,11 @@ public class EdoCuartoDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
         return dto;
     }
     
@@ -87,6 +107,7 @@ public class EdoCuartoDAO {
         Query query = session.createQuery("from EdoCuarto e order by e.idedoCuarto");
         lista = query.list();
         transaction.commit();
+        session.close();
         return lista;       
     }
 }

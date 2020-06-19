@@ -32,6 +32,11 @@ public class UsuarioDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public void update(UsuarioDTO dto){
@@ -45,6 +50,11 @@ public class UsuarioDAO {
         }catch(HibernateException he){
             if(transaction != null && transaction.isActive()){
                 transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
             }
         }
     }
@@ -62,6 +72,11 @@ public class UsuarioDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public UsuarioDTO read(UsuarioDTO dto){
@@ -77,6 +92,11 @@ public class UsuarioDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
         return dto;
     }
     
@@ -88,6 +108,7 @@ public class UsuarioDAO {
         Query query = session.createQuery("from Usuario h order by h.idusuario");
         lista = query.list();
         transaction.commit();
+        session.close();
         return lista;       
     }
     
@@ -113,6 +134,11 @@ public class UsuarioDAO {
         }catch(HibernateException ex){
             if(transaction != null && transaction.isActive()){
                 transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
             }
         }
         

@@ -31,6 +31,11 @@ public class PacienteDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public void update(PacienteDTO dto){
@@ -44,6 +49,11 @@ public class PacienteDAO {
         }catch(HibernateException he){
             if(transaction != null && transaction.isActive()){
                 transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
             }
         }
     }
@@ -61,6 +71,11 @@ public class PacienteDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public PacienteDTO read(PacienteDTO dto){
@@ -76,6 +91,11 @@ public class PacienteDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
         return dto;
     }
     
@@ -87,6 +107,7 @@ public class PacienteDAO {
         Query query = session.createQuery("from Paciente h order by h.curp");
         lista = query.list();
         transaction.commit();
+        session.close();
         return lista;       
     }
     public static void main(String[] args) {

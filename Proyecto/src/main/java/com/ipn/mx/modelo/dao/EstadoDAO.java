@@ -31,6 +31,11 @@ public class EstadoDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public void update(EstadoDTO dto){
@@ -44,6 +49,11 @@ public class EstadoDAO {
         }catch(HibernateException he){
             if(transaction != null && transaction.isActive()){
                 transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
             }
         }
     }
@@ -61,6 +71,11 @@ public class EstadoDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public EstadoDTO read(EstadoDTO dto){
@@ -76,6 +91,11 @@ public class EstadoDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
         return dto;
     }
     
@@ -87,6 +107,7 @@ public class EstadoDAO {
         Query query = session.createQuery("from Estado h order by h.idestado");
         lista = query.list();
         transaction.commit();
+        session.close();
         return lista;       
     }
 }

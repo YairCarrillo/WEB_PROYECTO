@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Administraci&oacute;n de Especialidades</title>
+    </h:head>
+    <h:body >
+        <ui:composition template="./../plantillas/Plantilla.xhtml">
+            <ui:define name="content" >
+                <div class="container" style="padding: 20px">
+                    <div class="card" style="opacity: 90%">
+                        <h5 class="card-header">Lista de Especialidades</h5>
+                        <div class="card-body">
+                            <f:view>
+                                <h:form id="frmCausas">
+                                    <div class="table-responsive">
+                                        <p:dataTable class="table table-striped" var="dto" value="#{especialidadMB.listaDeUsuarios}" 
+                                                     paginatorPosition="bottom"
+                                                     scrollable="true"
+                                                     scrollHeight="300">
+                                            <p:column>
+                                                <f:facet  name="header"> ID Especialidad</f:facet>
+                                                <h:outputText value="#{dto.idesp}"></h:outputText>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">Descripci&oacute;n</f:facet>
+                                                <h:outputText value="#{dto.descesp}"></h:outputText>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">Acciones</f:facet>
+                                                <h:commandButton class="btn btn-primary" style="margin: 10px" id="btnEditar" value="Editar" action="#{especialidadMB.editar()}" actionListener="#{especialidadMB.seleccionarEspecialidad}">
+                                                    <f:param name="clave" value="#{dto.idesp}"/>
+                                                </h:commandButton>
+                                                <h:commandButton class="btn btn-danger" style="margin: 10px" id="btnDelete" value="Borrar" action="#{especialidadMB.borrar()}" actionListener="#{especialidadMB.seleccionarEspecialidad}">
+                                                    <f:param name="clave" value="#{dto.idesp}"/>
+                                                </h:commandButton> 
+                                            </p:column>
+                                        </p:dataTable> 
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 offset-sm-4">
+                                            <h:commandButton  class="btn btn-primary" style="width: 100%" id="btnCreate" value="Nueva Causa" action="#{causaMB.nuevo()}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </f:view>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition> 
+    </h:body>
+</html>

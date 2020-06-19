@@ -18,41 +18,40 @@ import javax.persistence.Table;
 @Table(name="especialidad")
 public class Especialidad implements Serializable{
     @Id
-    private int idEsp;
-    private String descEsp;
+    private String idesp;
+    private String descesp;
 
     public Especialidad() {
     }
 
-    public Especialidad(int idEsp, String descEsp) {
-        this.idEsp = idEsp;
-        this.descEsp = descEsp;
+    public String getIdesp() {
+        return idesp;
     }
 
-    public int getIdEsp() {
-        return idEsp;
+    public void setIdesp(String idssp) {
+        this.idesp = idssp;
     }
 
-    public void setIdEsp(int idEsp) {
-        this.idEsp = idEsp;
+    public String getDescesp() {
+        return descesp;
     }
 
-    public String getDescEsp() {
-        return descEsp;
-    }
-
-    public void setDescEsp(String descEsp) {
-        this.descEsp = descEsp;
+    public void setDescesp(String descesp) {
+        this.descesp = descesp;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Especialidad{idEsp=").append(idEsp);
-        sb.append(", descEsp=").append(descEsp);
+        sb.append("Especialidad{idesp=").append(idesp);
+        sb.append(", descesp=").append(descesp);
         sb.append('}');
         return sb.toString();
     }
+
+    
+
+    
    
     
     

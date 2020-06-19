@@ -31,6 +31,11 @@ public class EspecialidadDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public void update(EspecialidadDTO dto){
@@ -44,6 +49,11 @@ public class EspecialidadDAO {
         }catch(HibernateException he){
             if(transaction != null && transaction.isActive()){
                 transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
             }
         }
     }
@@ -61,6 +71,11 @@ public class EspecialidadDAO {
                 transaction.rollback();
             }
         }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
     
     public EspecialidadDTO read(EspecialidadDTO dto){
@@ -69,11 +84,16 @@ public class EspecialidadDAO {
         
         try{
             transaction.begin();
-            dto.setEntidad(session.get(dto.getEntidad().getClass(), dto.getEntidad().getIdEsp()));
+            dto.setEntidad(session.get(dto.getEntidad().getClass(), dto.getEntidad().getIdesp()));
             transaction.commit();
         }catch(HibernateException he){
             if(transaction != null && transaction.isActive()){
                 transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
             }
         }
         return dto;
@@ -84,9 +104,16 @@ public class EspecialidadDAO {
         Transaction transaction = session.getTransaction();
         transaction.begin();
         List<EspecialidadDTO> lista;
-        Query query = session.createQuery("from especialidad h order by h.idESp");
+        Query query = session.createQuery("from Especialidad h order by h.idesp");
         lista = query.list();
         transaction.commit();
+        session.close();
         return lista;       
+    }
+    public static void main(String[] args) {
+        //MunicipioDTO dto=new MunicipioDTO();
+        //dto.getEntidad().setIdestado(1);
+        EspecialidadDAO dao=new EspecialidadDAO();
+        System.out.println(dao.readAll());
     }
 }

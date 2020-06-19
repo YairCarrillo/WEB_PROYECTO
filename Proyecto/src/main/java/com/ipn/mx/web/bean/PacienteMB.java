@@ -8,7 +8,6 @@ package com.ipn.mx.web.bean;
 import com.ipn.mx.modelo.dao.EstadoDAO;
 import com.ipn.mx.modelo.dao.MunicipioDAO;
 import com.ipn.mx.modelo.dao.PacienteDAO;
-import com.ipn.mx.modelo.dto.EstadoDTO;
 import com.ipn.mx.modelo.dto.MunicipioDTO;
 import com.ipn.mx.modelo.dto.PacienteDTO;
 import com.ipn.mx.modelo.entidades.Estado;
@@ -117,15 +116,16 @@ public class PacienteMB extends BaseBean implements Serializable{
         }
         return select;
     }
-    public void changeListMunicipios(){
+    public List<SelectItem> getListMunicipios(){
         MunicipioDTO dtoM=new MunicipioDTO();
         MunicipioDAO daoM=new MunicipioDAO();
-        listaMunicipios=new ArrayList<>();
+        List <SelectItem> lista=new ArrayList<>();
         dtoM.getEntidad().setIdestado(dto.getEntidad().getIdestado());
         List<Municipio> list=daoM.readEstado(dtoM);
         for(int i=0;i<list.size();i++){
-            listaMunicipios.add(new SelectItem(list.get(i).getIdmunicipio(),list.get(i).getNombre()));
+            lista.add(new SelectItem(list.get(i).getIdmunicipio(),list.get(i).getNombre()));
         }
+        return lista;
     }
     public PacienteDTO getDto() {
         return dto;

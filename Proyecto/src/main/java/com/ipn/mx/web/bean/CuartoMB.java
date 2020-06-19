@@ -24,7 +24,7 @@ import javax.faces.event.ActionEvent;
 @SessionScoped
 public class CuartoMB extends BaseBean implements Serializable {
     private CuartoDTO dto;
-    private CuartoDAO dao;
+    private CuartoDAO dao=new CuartoDAO();
     private List<CuartoDTO> listaDeCuartos;
     
     public CuartoMB() {

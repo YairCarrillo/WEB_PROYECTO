@@ -89,4 +89,10 @@ public class CuartoDAO {
         transaction.commit();
         return lista;       
     }
+    public static void main(String[] args) {
+        //MunicipioDTO dto=new MunicipioDTO();
+        //dto.getEntidad().setIdestado(1);
+        CuartoDAO dao=new CuartoDAO();
+        System.out.println(dao.readAll());
+    }
 }

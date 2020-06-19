@@ -11,6 +11,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
+import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -21,42 +22,58 @@ import javax.servlet.http.HttpSession;
 @Named(value = "loginBean")
 @SessionScoped
 public class LoginBean extends BaseBean implements Serializable {
+
     private UsuarioDTO dto;
     private UsuarioDAO dao;
-    
-    public LoginBean(){
+
+    public LoginBean() {
     }
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         dto = new UsuarioDTO();
         dao = new UsuarioDAO();
     }
-    
-    public String login(){
-        
-        if(dao.login(dto) != null){
+
+    public String login() {
+
+        if (dao.login(dto) != null) {
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
             session.setAttribute("nombreUsuario", dto.getEntidad().getNombreusuario());
 
             return "/Principal?faces-redirect=true";
-        }else{
-            error("ErrorSession","Usuario o Contraseña invalidos");
+        } else {
+            error("ErrorSession", "Usuario o Contraseña invalidos");
             return null;
         }
     }
-    
-    public String logout(){
+
+    public String logout() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.removeAttribute("nombreUsuario");
-        
-        if(session != null){
+
+        if (session != null) {
             session.invalidate();
         }
-        
+
         return "/index?faces-redirect=true";
     }
-    
+
+    public void verificarSession() {
+        try {
+            String nombreUsuario = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("nombreUsuario");
+            if (nombreUsuario == null) {
+
+                FacesContext fc = FacesContext.getCurrentInstance();
+                NavigationHandler navigationHandler = fc.getApplication().getNavigationHandler();
+                navigationHandler.handleNavigation(fc, null, "/error/errorSession?faces-redirect=true");
+                fc.renderResponse();
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
     public UsuarioDTO getDto() {
         return dto;
     }

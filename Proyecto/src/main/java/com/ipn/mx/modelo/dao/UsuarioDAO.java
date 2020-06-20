@@ -144,17 +144,47 @@ public class UsuarioDAO {
         
         return dto;
     }
-    
+    public UsuarioDTO UserName(UsuarioDTO dto){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.getTransaction();
+        List lista = null;
+        try{
+            transaction.begin();
+            Query query = session.createSQLQuery("select * from Usuario h where h.nombreusuario=:u").addEntity(Usuario.class)
+                    .setParameter("u", dto.getEntidad().getNombreusuario());
+            lista = query.list();
+            transaction.commit();
+
+            if(lista.size() > 0){
+                dto.setEntidad((Usuario) lista.get(0));
+
+                return dto;
+            }else{
+                return null;
+            } 
+        }catch(HibernateException ex){
+            if(transaction != null && transaction.isActive()){
+                transaction.rollback();
+            }
+        }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        
+        return dto;
+    }
     public static void main(String[] args) {
         UsuarioDTO dto=new UsuarioDTO();
         //dto.getEntidad().setNombre("Jonathan");
         //dto.getEntidad().setPaterno("Perez");
         //dto.getEntidad().setMaterno("Perez");
         dto.getEntidad().setNombreusuario("admin");
-        dto.getEntidad().setPassword("admin");
+        //dto.getEntidad().setPassword("admin");
         //dto.getEntidad().setCorreo("Hola que hace");
         UsuarioDAO dao=new UsuarioDAO();
-        dao.login(dto);
+        dao.UserName(dto);
         System.out.println(dto);
     }
 }

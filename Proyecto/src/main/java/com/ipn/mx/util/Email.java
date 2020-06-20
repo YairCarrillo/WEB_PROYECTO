@@ -48,5 +48,9 @@ public class Email {
             e.printStackTrace();
         }
     }
+    public static void main(String[] args) {
+        Email email=new Email();
+        email.enviarEmail("yirz.carrillo@gmail.com", "HOla", "hola que hace");
+    }
     
 }

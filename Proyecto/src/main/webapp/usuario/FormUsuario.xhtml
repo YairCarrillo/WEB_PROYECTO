@@ -17,6 +17,7 @@
                         <div class="card-body">
                             <f:view>
                                 <h:form id="frmUsuario" enctype="multipart/form-data">
+                                    <p:messages id="validate"/>
                                     <h:inputHidden value="#{usuarioMB.accion}"/>
                                     <div class="row">
                                         <div class="form-group col-12">
@@ -25,27 +26,30 @@
                                         </div>
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblNombre" for="txtNombre" value="Nombre"/>
-                                            <h:inputText class="form-control"  id="txtNombre" value="#{usuarioMB.dto.entidad.nombre}" required="true" requiredMessage="Este campo es obligatorio" maxlength="30"/>
+                                            <h:inputText class="form-control"  id="txtNombre" value="#{usuarioMB.dto.entidad.nombre}" required="true" requiredMessage="Este campo Nombre es obligatorio" maxlength="30"/>
                                         </div>
                                         <div class="form-group col-12">
-                                            <h:outputLabel id="lblPaterno" for="txtPaterno" value="Ap. Paterno"/>
-                                            <h:inputText class="form-control" id="txtPaterno" value="#{usuarioMB.dto.entidad.paterno}" required="true" requiredMessage="Este campo es obligatorio" maxlength="50"/>
+                                            <h:outputLabel id="lblPaterno" for="txtPaterno" value="Apellido Paterno"/>
+                                            <h:inputText class="form-control" id="txtPaterno" value="#{usuarioMB.dto.entidad.paterno}" required="true" requiredMessage="Este campo Apellido Paterno es obligatorio" maxlength="50"/>
                                         </div>
                                         <div class="form-group col-12">
-                                            <h:outputLabel id="lblMaterno" for="txtMaterno" value="Ap. Materno"/>
-                                            <h:inputText class="form-control" id="txtMaterno" value="#{usuarioMB.dto.entidad.materno}" required="true" requiredMessage="Este campo es obligatorio" maxlength="50"/> 
+                                            <h:outputLabel id="lblMaterno" for="txtMaterno" value="Apellido Materno"/>
+                                            <h:inputText class="form-control" id="txtMaterno" value="#{usuarioMB.dto.entidad.materno}" required="true" requiredMessage="Este campo Apellido Materno es obligatorio" maxlength="50"/> 
                                         </div>
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblNombreUsuario" for="txtNombreUsuario" value="Nombre Usuario"/>
-                                            <h:inputText class="form-control" id="txtNombreUsuario" value="#{usuarioMB.dto.entidad.nombreusuario}" required="true" requiredMessage="Este campo es obligatorio" maxlength="50"/>
+                                            <h:inputText class="form-control" id="txtNombreUsuario" value="#{usuarioMB.dto.entidad.nombreusuario}" required="true" 
+                                                         requiredMessage="Este campo Nombre Usuario es obligatorio" 
+                                                         maxlength="50"
+                                                         validator="#{usuarioMB.validateUserName}"/>
                                         </div>
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblPassword" for="txtPassword" value="Password"/>
-                                            <h:inputSecret class="form-control" id="txtPassword" value="#{usuarioMB.dto.entidad.password}" required="true" requiredMessage="Este campo es obligatorio" maxlength="50"/>
+                                            <h:inputSecret class="form-control" id="txtPassword" value="#{usuarioMB.dto.entidad.password}" required="true" requiredMessage="Este campo Password es obligatorio" maxlength="50"/>
                                         </div>
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblCorreo" for="txtCorreo" value="Correo"/>
-                                            <h:inputText class="form-control" id="txtCorreo" value="#{usuarioMB.dto.entidad.correo}" required="true" requiredMessage="Este campo es obligatorio"/>
+                                            <h:inputText class="form-control" id="txtCorreo" value="#{usuarioMB.dto.entidad.correo}" required="true" requiredMessage="Este campo Correo es obligatorio"/>
                                         </div>
                                     </div>
                                     <div class="row">

@@ -14,8 +14,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.validator.ValidatorException;
 
 
 
@@ -83,7 +86,7 @@ public class UsuarioMB extends BaseBean implements Serializable{
             
             return prepareIndex();
         }catch(Exception e){
-            error("ErrorActualizarEvento", "Error al actualizar el evento");
+            error("ErrorActuCorreoalizarEvento", "Error al actualizar el evento");
             return "/usuario/FormUsuario?faces-redirect=true";
         }
     }
@@ -105,6 +108,15 @@ public class UsuarioMB extends BaseBean implements Serializable{
             dto = dao.read(dto);
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+    public void validateUserName(FacesContext facesContext,
+      UIComponent component, Object value){
+        UsuarioDTO aux=new UsuarioDTO();
+        aux.getEntidad().setNombreusuario(value.toString());
+        aux =dao.UserName(aux);
+        if(aux!=null){
+            throw new ValidatorException(new FacesMessage("Nombre de Usuario Existente"));
         }
     }
     public UsuarioDTO getDto() {

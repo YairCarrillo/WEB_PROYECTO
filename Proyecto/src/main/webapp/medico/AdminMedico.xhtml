@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Administraci&oacute;n de Cuartos</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="jquery-3.5.1.slim.min.js"/>
+        <h:outputScript library="js" name="popper.min.js"/>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+    </h:head>
+    <h:body >
+        <ui:composition template="./../plantillas/Plantilla.xhtml">
+            <ui:define name="content" >
+                <div class="container" style="padding: 20px">
+                    <div class="card" style="opacity: 90%">
+                        <h5 class="card-header">Lista de Cuartos</h5>
+                        <div class="card-body">
+                            <f:view>
+                                <h:form id="frmCuartos">
+                                    <div class="table-responsive">
+                                        <p:dataTable class="table table-striped" var="dto" value="#{medicoMB.listaDeMedicos}"
+                                                     paginatorPosition="bottom"
+                                                     scrollable="true"
+                                                     scrollHeight="300">>
+                                            <p:column>
+                                                <f:facet  name="header"> Cedula </f:facet>
+                                                <h:outputText value="#{dto.cedula}"></h:outputText>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header"> Nombre </f:facet>
+                                                <h:outputText value="#{dto.nombre}"></h:outputText>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header"> Direcci&oacute;n </f:facet>
+                                                <h:outputText value="#{dto.dir}"></h:outputText>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header"> Especialidad </f:facet>
+                                                <h:outputText value="#{dto.idEsp}"></h:outputText>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header"> Telefono </f:facet>
+                                                <h:outputText value="#{dto.tel}"></h:outputText>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">Acciones</f:facet>
+                                                <h:commandButton class="btn btn-primary" style="margin: 10px" id="btnEditar" value="Editar" action="#{medicoMB.editar()}" actionListener="#{medicoMB.seleccionarMedico}">
+                                                    <f:param name="clave" value="#{dto.cedula}"/>
+                                                </h:commandButton>
+                                                <h:commandButton class="btn btn-danger" style="margin: 10px" id="btnDelete" value="Borrar" action="#{medicoMB.borrar()}" actionListener="#{medicoMB.seleccionarMedico}">
+                                                    <f:param name="clave" value="#{dto.cedula}"/>
+                                                </h:commandButton> 
+                                            </p:column>
+                                        </p:dataTable> 
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 offset-sm-4">
+                                            <h:commandButton  class="btn btn-primary" style="width: 100%" id="btnCreate" value="Nuevo Cuarto" action="#{medicoMB.nuevo()}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </f:view>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition> 
+    </h:body>
+</html>

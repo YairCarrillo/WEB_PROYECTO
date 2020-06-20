@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Formulario de Cuartos</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../plantillas/Plantilla.xhtml">
+            <ui:define name="content">
+                <div class="container" style="padding: 20px;height:1000px">
+                    <div class="card" style="opacity: 90%">
+                        <h5 class="card-header">Cuarto</h5>
+                        <div class="card-body">
+                            <f:view>
+                                <h:form id="frmCuartos">
+                                    <h:inputHidden value="#{medicoMB.accion}"/>
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblId" for="txtNoCuarto" value="Cedula" />
+                                            <h:inputText  class="form-control" id="txtNoCuarto" value="#{medicoMB.dto.entidad.cedula}" />
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblNombre" for="txtNoCuarto1" value="Nombre"/>
+                                            <h:inputText  class="form-control" id="txtNombre" value="#{medicoMB.dto.entidad.nombre}" required="true"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblDir" for="txtDir" value="Direcci&oacute;n"/>
+                                            <h:inputTextarea  class="form-control" id="txtDir" value="#{medicoMB.dto.entidad.dir}" required="true"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lbEspecialidad" for="txtEspecialidad" value="Especialidad"/>
+                                            <h:selectOneMenu value="#{medicoMB.dto.entidad.idEsp}" class="custom-select">
+                                                <f:selectItems value="#{medicoMB.listEspecialidades}"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lbTel" for="txtTel" value="Telefono"/>
+                                            <h:inputText  class="form-control" id="txtTel" value="#{medicoMB.dto.entidad.tel}" required="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-4 offset-md-4">
+                                            <h:commandButton style="width: 100%;margin: 10px" class="btn btn-primary" id="btnEditar" value="Actualizar"
+                                                             action="#{medicoMB.actualizar()}" rendered="#{medicoMB.modoActualizar}"/>
+                                            <h:commandButton style="width: 100%;margin: 10px" class="btn btn-primary" id="btnCreate" value="Crear"
+                                                             action="#{medicoMB.crear()}" rendered="#{medicoMB.modoCrear}"/>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4 offset-md-4">
+                                            <h:commandButton style="width: 100%;margin: 10px" class="btn btn-danger" id="btnCancelar" value="Cancelar"
+                                                             action="#{medicoMB .back()}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </f:view>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

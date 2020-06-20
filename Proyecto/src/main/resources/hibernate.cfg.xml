@@ -44,5 +44,7 @@
         <mapping class="com.ipn.mx.modelo.entidades.Paciente" />
         <mapping class="com.ipn.mx.modelo.entidades.Municipio" />
         <mapping class="com.ipn.mx.modelo.entidades.Estado" />
+        <mapping class="com.ipn.mx.modelo.entidades.DataGraphEstadoCuarto" />
+        <mapping class="com.ipn.mx.modelo.entidades.DataGraphHospitalizacion" />
     </session-factory>
 </hibernate-configuration>

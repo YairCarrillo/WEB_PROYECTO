@@ -21,7 +21,7 @@ public class Medico implements Serializable{
     private  int cedula;
     private String nombre;
     private String dir;
-    private int idEsp;
+    private String idEsp;
     private int tel;
 
     public Medico() {
@@ -43,11 +43,11 @@ public class Medico implements Serializable{
         this.dir = dir;
     }
 
-    public int getIdEsp() {
+    public String getIdEsp() {
         return idEsp;
     }
 
-    public void setIdEsp(int idEsp) {
+    public void setIdEsp(String idEsp) {
         this.idEsp = idEsp;
     }
 
@@ -70,7 +70,7 @@ public class Medico implements Serializable{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Paciente{cedula=").append(cedula);
+        sb.append("Medico{cedula=").append(cedula);
         sb.append(", nombre=").append(nombre);
         sb.append(", dir=").append(dir);
         sb.append(", idEsp=").append(idEsp);

@@ -25,38 +25,40 @@
                             <f:view>
                                 <h:form id="frmEventos">
                                     <div class="table-responsive">
-                                        <h:dataTable class="table table-striped" var="dto" value="#{usuarioMB.listaDeUsuarios}">
-                                            <h:column rowHeader="thead-dark">
+                                        <p:dataTable class="table table-striped" var="dto" value="#{usuarioMB.listaDeUsuarios}"
+                                                     scrollable="true"
+                                                     scrollHeight="300">
+                                            <p:column >
                                                 <f:facet  name="header"> Folio</f:facet>
                                                 <h:outputText value="#{dto.idusuario}"></h:outputText>
-                                            </h:column>
-                                            <h:column >
+                                            </p:column>
+                                            <p:column >
                                                 <f:facet name="header">Nombre</f:facet>
                                                 <h:outputText value="#{dto.nombre}"></h:outputText>
-                                            </h:column>
-                                            <h:column>
+                                            </p:column>
+                                            <p:column>
                                                 <f:facet name="header">Ap.Paterno</f:facet>
                                                 <h:outputText value="#{dto.paterno}"></h:outputText>
-                                            </h:column>
-                                            <h:column >
+                                            </p:column>
+                                            <p:column >
                                                 <f:facet name="header">Ap.Materno</f:facet>
                                                 <h:outputText value="#{dto.materno}"></h:outputText>
-                                            </h:column>
-                                            <h:column >
+                                            </p:column>
+                                            <p:column >
                                                 <f:facet name="header">Usuario</f:facet>
                                                 <h:outputText value="#{dto.nombreusuario}"></h:outputText>
-                                            </h:column>
-                                            <h:column >
+                                            </p:column>
+                                            <p:column >
                                                 <f:facet name="header">Password</f:facet>
                                                 <h:outputText  value="#{dto.password}"></h:outputText>
-                                            </h:column>
+                                            </p:column>
                                             <!--
                                                 <h:column >
                                                 <f:facet name="header">Foto de Perfil</f:facet>
                                                 <h:outputText  value="#{dto.password}"></h:outputText>
                                                 </h:column>
                                             -->
-                                            <h:column>
+                                            <p:column>
                                                 <f:facet name="header">Acciones</f:facet>
                                                 <h:commandButton class="btn btn-primary" style="margin: 10px" id="btnEditar" value="Editar" action="#{usuarioMB.editar()}" actionListener="#{usuarioMB.seleccionarEvento}">
                                                     <f:param name="clave" value="#{dto.idusuario}"/>
@@ -64,8 +66,8 @@
                                                 <h:commandButton class="btn btn-danger" style="margin: 10px" id="btnDelete" value="Borrar" action="#{usuarioMB.borrar()}" actionListener="#{usuarioMB.seleccionarEvento}">
                                                     <f:param name="clave" value="#{dto.idusuario}"/>
                                                 </h:commandButton> 
-                                            </h:column>
-                                        </h:dataTable> 
+                                            </p:column>
+                                        </p:dataTable> 
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-4 offset-sm-4">

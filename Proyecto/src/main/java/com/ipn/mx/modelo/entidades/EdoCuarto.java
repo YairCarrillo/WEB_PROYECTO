@@ -7,6 +7,8 @@ package com.ipn.mx.modelo.entidades;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,6 +20,7 @@ import javax.persistence.Table;
 @Table(name = "edocuarto")
 public class EdoCuarto implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idedoCuarto;
     private String edoCuarto;
 

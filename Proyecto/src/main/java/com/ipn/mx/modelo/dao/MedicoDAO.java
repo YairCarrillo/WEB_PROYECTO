@@ -104,10 +104,16 @@ public class MedicoDAO {
         Transaction transaction = session.getTransaction();
         transaction.begin();
         List<MedicoDTO> lista;
-        Query query = session.createQuery("from medico h order by h.cedula");
+        Query query = session.createQuery("from Medico h order by h.cedula");
         lista = query.list();
         transaction.commit();
         session.close();
         return lista;       
+    }
+    public static void main(String[] args) {
+        //MunicipioDTO dto=new MunicipioDTO();
+        //dto.getEntidad().setIdestado(1);
+        MedicoDAO dao=new MedicoDAO();
+        System.out.println(dao.readAll());
     }
 }

@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Hospital Web</title>
 
@@ -44,21 +45,40 @@
                             <h:commandLink class="nav-link"  value="Cuartos" action="/cuarto/AdminCuarto?faces-redirect=true"/>
                         </li>
                         <li class="nav-item active">
-                            <h:commandLink class="nav-link"  value="Medicos" action="/edocuarto/AdminEdoCuarto?faces-redirect=true"/>
+                            <h:commandLink class="nav-link"  value="Medicos" action="/medico/AdminMedico?faces-redirect=true"/>
                         </li>
                         <li class="nav-item active">
                             <h:commandLink class="nav-link"  value="Especialidades" action="/especialidad/AdminEspecialidad?faces-redirect=true"/>
                         </li>
+                        <li class="nav-item active">
+                            <h:commandLink class="nav-link"  value="Estados Cuartos" action="/edocuarto/AdminEdoCuarto?faces-redirect=true"/>
+                        </li>
                     </ul>
                 </h:form>
 
-                <h:form >
-                    <h:outputText value="Bienvenido, #{nombreUsuario}" style="padding: 20px" />
-                    <h:commandButton id="btnLogout" class="btn btn-outline-success my-2 my-sm-0" value="Cerrar Sesión" action="#{loginBean.logout()}" />
-                </h:form>
+
             </div>
         </nav>
-
+        <div class="container" style="margin: 30px;width: 100%">
+            <div class="card">
+                <h5 class="card-header">Bienvenido</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Graficas disponible</h5>
+                    <h:form>
+                        <div class="row">
+                            <div class="col-sm-4 offset-sm-4">
+                                <h:commandLink style="width : 100%;margin: 10px" class="btn btn-primary" value="Grafica de Estados de los Cuartos" action="/graficas/graficaEdoCuarto?faces-redirect=true"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 offset-sm-4">
+                                <h:commandLink style="width: 100%;margin: 10px" class="btn btn-primary" value="Grafica Razones Hospitalarias" action="/graficas/graficaHospitalizacion?faces-redirect=true"/> 
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
         <div class="footer-copyright text-center py-3 fixed-bottom">© 2020 Copyright:<br></br>
             Carrillo Balcazar Eduardo Yair | Mel&eacute;ndez Macedonio Jonathan
         </div>

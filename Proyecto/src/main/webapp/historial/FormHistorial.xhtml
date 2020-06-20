@@ -8,6 +8,10 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Hospital Web</title>
+
+        <f:metadata>  
+            <f:viewParam name="action" value="#{historialMB.accion}" />  
+        </f:metadata> 
     </h:head>
     <h:body>
         <ui:composition template="./../plantillas/Plantilla.xhtml">
@@ -18,21 +22,27 @@
                         <div class="card-body">
                             <f:view>
                                 <h:form id="frmHistorial">
-                                    <h:inputHidden value="#{historialMB.setAccion(param['action'])}"/>
                                     <h:inputHidden value="#{historialMB.accion}"/>
                                     <div class="row">
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblId" for="txtIdHistorial" value="ID del historial"/>
-                                            <h:inputText  class="form-control" id="txtIdHistorial" value="#{historialMB.dto.entidad.idhistorial}" readonly="true"/>
+                                            <h:inputText  class="form-control" id="txtIdHistorial" value="#{historialMB.dto.entidad.idhistorial}" rendered="#{historialMB.modoCrear}"/>
+                                            <h:inputText  class="form-control" id="txtIdHistorial1" value="#{historialMB.dto.entidad.idhistorial}" rendered="#{historialMB.modoActualizar}" readonly="true"/>
                                         </div>
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblCedula" for="txtCedula" value="Cedula del médico"/>
-                                            
+                                            <h:selectOneMenu value="#{historialMB.dto.entidad.cedula}" class="custom-select">
+                                                <c:forEach items="#{medicoMB.listaDeMedicos}" var="medicos">
+                                                    <f:selectItem itemValue="#{medicos.cedula}" itemLabel="#{medicos.nombre}"/>
+                                                </c:forEach>
+                                            </h:selectOneMenu>
                                         </div>
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblCURP" for="txtCURP" value="CURP del paciente"/>
                                             <h:inputText class="form-control" id="txtCURP" value="#{param['id']}" readonly="true" rendered="#{historialMB.modoCrear}"/>
-                                            <h:inputHidden value="#{historialMB.dto.entidad.setCurp(param['id'])}" rendered="#{historialMB.modoCrear}" />
+                                            <f:metadata>  
+                                                <f:viewParam name="id" value="#{historialMB.dto.entidad.curp}" />  
+                                            </f:metadata>
                                             <h:inputText class="form-control" id="txtCURP1" value="#{historialMB.dto.entidad.curp}" rendered="#{historialMB.modoActualizar}"/>
                                         </div>
                                         <div class="form-group col-12">

@@ -25,54 +25,58 @@
                             <f:view>
                                 <h:form id="frmEventos">
                                     <div class="table-responsive">
-                                        <h:dataTable class="table table-striped" var="dto" value="#{usuarioMB.listaDeUsuarios}">
-                                            <h:column rowHeader="thead-dark">
-                                                <f:facet  name="header"> Folio</f:facet>
-                                                <h:outputText value="#{dto.idusuario}"></h:outputText>
-                                            </h:column>
-                                            <h:column >
-                                                <f:facet name="header">Nombre</f:facet>
-                                                <h:outputText value="#{dto.nombre}"></h:outputText>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">Ap.Paterno</f:facet>
-                                                <h:outputText value="#{dto.paterno}"></h:outputText>
-                                            </h:column>
-                                            <h:column >
-                                                <f:facet name="header">Ap.Materno</f:facet>
-                                                <h:outputText value="#{dto.materno}"></h:outputText>
-                                            </h:column>
-                                            <h:column >
-                                                <f:facet name="header">Usuario</f:facet>
-                                                <h:outputText value="#{dto.nombreusuario}"></h:outputText>
-                                            </h:column>
-                                            <h:column >
-                                                <f:facet name="header">Password</f:facet>
-                                                <h:outputText  value="#{dto.password}"></h:outputText>
-                                            </h:column>
-                                            <!--
-                                                <h:column >
-                                                <f:facet name="header">Foto de Perfil</f:facet>
-                                                <h:outputText  value="#{dto.password}"></h:outputText>
-                                                </h:column>
-                                            -->
-                                            <h:column>
+                                        <p:dataTable styleClass="borderless" var="dto" value="#{historialMB.listaDeHistoriales}"
+                                                     paginatorPosition="bottom"
+                                                     scrollable="true"
+                                                     scrollHeight="300">
+                                            <p:column>
+                                                <f:facet  name="header"> ID del historial</f:facet>
+                                                <h:outputText value="#{dto.idhistorial}"></h:outputText>
+                                            </p:column>
+                                            <p:column >
+                                                <f:facet name="header">Cedula</f:facet>
+                                                <h:outputText value="#{dto.cedula}"></h:outputText>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">CURP del paciente</f:facet>
+                                                <h:outputText value="#{dto.curp}"></h:outputText>
+                                            </p:column>
+                                            <p:column >
+                                                <f:facet name="header">Fecha de ingreso</f:facet>
+                                                <h:outputText value="#{dto.fechaIngreso}"></h:outputText>
+                                            </p:column>
+                                            <p:column >
+                                                <f:facet name="header">Fecha de alta</f:facet>
+                                                <h:outputText value="#{dto.fechaAlta}"></h:outputText>
+                                            </p:column>
+                                            <p:column >
+                                                <f:facet name="header">ID de la causa</f:facet>
+                                                <h:outputText  value="#{dto.idcausaHosp}"></h:outputText>
+                                            </p:column>
+                                            <p:column >
+                                                <f:facet name="header">No. de la cama</f:facet>
+                                                <h:outputText  value="#{dto.noCama}"></h:outputText>
+                                            </p:column>
+                                            <p:column >
+                                                <f:facet name="header">No. del cuarto</f:facet>
+                                                <h:outputText  value="#{dto.noCuarto}"></h:outputText>
+                                            </p:column>
+                                            <p:column>
                                                 <f:facet name="header">Acciones</f:facet>
-                                                <h:commandButton class="btn btn-primary" style="margin: 10px" id="btnEditar" value="Editar" action="#{usuarioMB.editar()}" actionListener="#{usuarioMB.seleccionarEvento}">
-                                                    <f:param name="clave" value="#{dto.idusuario}"/>
+                                                <h:commandButton class="btn btn-primary" style="margin: 10px" id="btnEditar" value="Editar" action="#{historialMB.editar()}" actionListener="#{historialMB.seleccionarHistorial}">
+                                                    <f:param name="claveSel" value="#{dto.idhistorial}"/>
                                                 </h:commandButton>
-                                                <h:commandButton class="btn btn-danger" style="margin: 10px" id="btnDelete" value="Borrar" action="#{usuarioMB.borrar()}" actionListener="#{usuarioMB.seleccionarEvento}">
-                                                    <f:param name="clave" value="#{dto.idusuario}"/>
+                                                <h:commandButton class="btn btn-danger" style="margin: 10px" id="btnDelete" value="Borrar" action="#{historialMB.borrar()}" actionListener="#{historialMB.seleccionarHistorial}">
+                                                    <f:param name="claveSel" value="#{dto.idhistorial}"/>
                                                 </h:commandButton> 
-                                            </h:column>
-                                        </h:dataTable> 
+                                            </p:column>
+                                        </p:dataTable> 
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-4 offset-sm-4">
-                                            <h:commandButton  class="btn btn-primary" style="width: 100%" id="btnCreate" value="Nuevo Usuario" action="#{usuarioMB.nuevo()}"/>
+                                            <h:commandButton  class="btn btn-primary" style="width: 100%" id="btnCreate" value="Nuevo Paciente" action="#{pacienteMB.nuevo()}"/>
                                         </div>
                                     </div>
-
                                 </h:form>
                             </f:view>
 

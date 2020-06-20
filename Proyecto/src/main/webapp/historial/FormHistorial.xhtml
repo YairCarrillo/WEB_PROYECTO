@@ -1,12 +1,98 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Hospital Web</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <ui:composition template="./../plantillas/Plantilla.xhtml">
+            <ui:define name="content">
+                <div class="container" style="padding: 20px;height:1000px">
+                    <div class="card" style="opacity: 90%">
+                        <h5 class="card-header">Historial</h5>
+                        <div class="card-body">
+                            <f:view>
+                                <h:form id="frmHistorial">
+                                    <h:inputHidden value="#{historialMB.setAccion(param['action'])}"/>
+                                    <h:inputHidden value="#{historialMB.accion}"/>
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblId" for="txtIdHistorial" value="ID del historial"/>
+                                            <h:inputText  class="form-control" id="txtIdHistorial" value="#{historialMB.dto.entidad.idhistorial}" readonly="true"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblCedula" for="txtCedula" value="Cedula del médico"/>
+                                            
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblCURP" for="txtCURP" value="CURP del paciente"/>
+                                            <h:inputText class="form-control" id="txtCURP" value="#{param['id']}" readonly="true" rendered="#{historialMB.modoCrear}"/>
+                                            <h:inputHidden value="#{historialMB.dto.entidad.setCurp(param['id'])}" rendered="#{historialMB.modoCrear}" />
+                                            <h:inputText class="form-control" id="txtCURP1" value="#{historialMB.dto.entidad.curp}" rendered="#{historialMB.modoActualizar}"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblFecIng" for="txtFecIng" value="Fecha de ingreso"/>
+                                            <p:calendar id="txtFecIng" value="#{historialMB.dto.entidad.fechaIngreso}" required="true" pattern="dd-MM-yyyy" locale="es"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblFecAlta" for="txtFecAlta" value="Fecha de alta"/>
+                                            <p:calendar id="txtFecAlta" value="#{historialMB.dto.entidad.fechaAlta}" required="true" pattern="dd-MM-yyyy"/>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblCausa" for="txtCausa" value="Causa de hospitalización"/>
+                                            <h:selectOneMenu value="#{historialMB.dto.entidad.idcausaHosp}" class="custom-select">
+                                                <c:forEach items="#{causaMB.listaDeCausas}" var="causas">
+                                                    <f:selectItem itemValue="#{causas.idCausaHosp}" itemLabel="#{causas.tratamiento}"/>
+                                                </c:forEach>
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel  for="txtCama" value="Número de cama"/>
+                                            <h:inputText class="form-control" id="txtCama" value="#{historialMB.dto.entidad.noCama}" required="true" requiredMessage="Este campo es obligatorio" />
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblCuarto" for="txtCuarto" value="Número de cuarto"/>
+                                            <h:selectOneMenu value="#{historialMB.dto.entidad.noCuarto}" class="custom-select">
+                                                <c:forEach items="#{cuartoMB.listaDeCuartos}" var="cuartos">
+                                                    <c:if test="#{(cuartos.idedoCuarto == 2 or cuartos.idedoCuarto == 4)}">
+                                                        <f:selectItem itemValue="#{cuartos.noCuarto}" itemLabel="#{cuartos.noCuarto}"/>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-4 offset-md-4">
+                                            <h:commandButton style="width: 100%; margin:10px" class="btn btn-primary" id="btnEditar" value="Actualizar"
+                                                             action="#{historialMB.actualizar()}" rendered="#{historialMB.modoActualizar}"/>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4 offset-md-4">
+                                            <h:commandButton style="width: 100%; margin:10px" class="btn btn-primary" id="btnCrear" value="Crear"
+                                                             action="#{historialMB.crear()}" rendered="#{historialMB.modoCrear}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
+                                <h:form id="formback">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-4 offset-md-4">
+                                            <h:commandButton style="width: 100%; margin: 10px" class="btn btn-danger" id="btnCancelar" value="Cancelar"
+                                                             action="#{historialMB.back()}"/>
+                                        </div>
+                                    </div>
+
+                                </h:form>
+
+                            </f:view>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

@@ -25,7 +25,7 @@ import javax.faces.event.ActionEvent;
 @SessionScoped
 public class HistorialMB extends BaseBean implements Serializable {
     private HistorialDTO dto;
-    private HistorialDAO dao;
+    private HistorialDAO dao = new HistorialDAO();
     private List<HistorialDTO> listaDeHistoriales;
     
     public HistorialMB() {
@@ -47,7 +47,7 @@ public class HistorialMB extends BaseBean implements Serializable {
     public String editar(){
         setAccion(ACC_ACTUALIZAR);
         
-        return "/historial/FormHistorial?faces-redirect=true";
+        return "/historial/FormHistorial?faces-redirect=true&action=ACTUALIZAR";
     } 
     
     public String back(){
@@ -92,6 +92,16 @@ public class HistorialMB extends BaseBean implements Serializable {
             error("ErrorBorrarHistorial", "Error al borrar historial");
             return "/historial/FormHistorial?faces-redirect=true";
         }
+    }
+    
+    public String putCURP(){
+        String curp = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+        
+        dto.getEntidad().setCurp(curp);
+        
+        System.out.println(curp);
+        
+        return "Yei!";
     }
     
     public void seleccionarHistorial(ActionEvent event) {

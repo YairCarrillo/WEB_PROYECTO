@@ -7,6 +7,7 @@ package com.ipn.mx.web.bean;
 
 import com.ipn.mx.modelo.dao.UsuarioDAO;
 import com.ipn.mx.modelo.dto.UsuarioDTO;
+import com.ipn.mx.util.Email;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,12 @@ public class UsuarioMB extends BaseBean implements Serializable{
     public String crear(){
         try{
             dao.create(dto);
+            Email email=new Email();
+            String asunto="Registro Exitoso";
+            String contenido="Se a registro de manera exitosa bajo los siguiente parametras\n"
+                    + "Nombre de Usuario: "+dto.getEntidad().getNombreusuario()+"\n"
+                    + "Contraseña:"+dto.getEntidad().getPassword()+"\n";
+            email.enviarEmail(dto.getEntidad().getCorreo(),asunto,contenido);
             return prepareIndex();
         }catch(Exception e){
             error("ErrorCrearEvento", "Error al crear el evento");

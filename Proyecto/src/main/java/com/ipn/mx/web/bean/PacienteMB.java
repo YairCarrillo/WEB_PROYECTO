@@ -87,17 +87,6 @@ public class PacienteMB extends BaseBean implements Serializable{
         }
     }
     
-    public String continuar(){
-        try{
-            dao.create(dto);
-            
-            return "/historial/FormHistorial?faces-redirect=true&id="+dto.getEntidad().getCurp()+"&action=CREAR";
-        }catch(Exception e){
-            error("ErrorCrearEvento", "Error al crear el evento");
-            return "/paciente/FormPaciente?faces-redirect=true";
-        }
-    }
-    
     public String borrar(){
         try{
             dao.delete(dto);

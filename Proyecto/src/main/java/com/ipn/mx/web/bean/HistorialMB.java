@@ -94,14 +94,9 @@ public class HistorialMB extends BaseBean implements Serializable {
         }
     }
     
-    public String putCURP(){
-        String curp = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+    public String reporte(ActionEvent event){
         
-        dto.getEntidad().setCurp(curp);
-        
-        System.out.println(curp);
-        
-        return "Yei!";
+        return "";
     }
     
     public void seleccionarHistorial(ActionEvent event) {

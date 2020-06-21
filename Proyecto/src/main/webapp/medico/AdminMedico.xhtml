@@ -7,7 +7,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Administraci&oacute;n de Cuartos</title>
+        <title>Administraci&oacute;n de M&eacute;dicos</title>
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <h:outputScript library="js" name="bootstrap.min.js"/>
         <h:outputScript library="js" name="jquery-3.5.1.slim.min.js"/>
@@ -20,7 +20,7 @@
             <ui:define name="content" >
                 <div class="container" style="padding: 20px">
                     <div class="card" style="opacity: 90%">
-                        <h5 class="card-header">Lista de Cuartos</h5>
+                        <h5 class="card-header">Lista de M&eacute;dicos</h5>
                         <div class="card-body">
                             <f:view>
                                 <h:form id="frmCuartos">
@@ -57,12 +57,18 @@
                                                 <h:commandButton class="btn btn-danger" style="margin: 10px" id="btnDelete" value="Borrar" action="#{medicoMB.borrar()}" actionListener="#{medicoMB.seleccionarMedico}">
                                                     <f:param name="clave" value="#{dto.cedula}"/>
                                                 </h:commandButton> 
+                                                <h:commandLink class="btn btn-secondary" style="margin: 10px" id="btnReporte" value="Reporte" action="#{medicoMB.reporte()}" actionListener="#{medicoMB.seleccionarMedico}" target="_blank">
+                                                    <f:param name="clave" value="#{dto.cedula}"/>
+                                                </h:commandLink>
                                             </p:column>
                                         </p:dataTable> 
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-4 offset-sm-4">
-                                            <h:commandButton  class="btn btn-primary" style="width: 100%" id="btnCreate" value="Nuevo Cuarto" action="#{medicoMB.nuevo()}"/>
+                                            <h:commandButton  class="btn btn-primary" style="width: 100%;margin: 10px" id="btnCreate" value="Nuevo Médico" action="#{medicoMB.nuevo()}"/>
+                                        </div>
+                                        <div class="col-sm-4 offset-sm-4">
+                                            <h:commandLink class="btn btn-secondary" style="width: 100%;margin: 10px" id="btnReporte" value="Reporte General" action="#{medicoMB.reporteAll()}" target="_blank"/>
                                         </div>
                                     </div>
                                 </h:form>

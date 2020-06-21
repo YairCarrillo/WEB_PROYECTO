@@ -9,9 +9,16 @@ import com.ipn.mx.modelo.dao.EspecialidadDAO;
 import com.ipn.mx.modelo.dao.MedicoDAO;
 import com.ipn.mx.modelo.dto.MedicoDTO;
 import com.ipn.mx.modelo.entidades.Especialidad;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -19,6 +26,10 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 /**
  *
@@ -92,6 +103,63 @@ public class MedicoMB extends BaseBean implements Serializable{
             return "/medico/AdminMedico?faces-redirect=true";
         }
     }
+    
+    public String reporte(){
+        String relativeWebPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/Medico.jasper");
+        File archivo = new File(relativeWebPath);
+        Map parametros = new HashMap();
+        parametros.put("id", dto.getEntidad().getCedula());
+        
+        try {
+            byte[] bytes = JasperRunManager.runReportToPdf(archivo.getPath(), parametros, dao.getConnection());
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            ServletOutputStream sos = response.getOutputStream();
+            response.setContentType("application/pdf");
+            response.setContentLength(bytes.length);
+            sos.write(bytes, 0, bytes.length);
+            sos.flush();
+            sos.close();
+            
+            FacesContext.getCurrentInstance().responseComplete();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(HistorialMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(HistorialMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HistorialMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return "/medico/ReportePage?faces-redirect=true";
+    }
+    
+    public String reporteAll(){
+        String relativeWebPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/Lista_Medicos.jasper");
+        File archivo = new File(relativeWebPath);
+        
+        try {
+            byte[] bytes = JasperRunManager.runReportToPdf(archivo.getPath(), null, dao.getConnection());
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            ServletOutputStream sos = response.getOutputStream();
+            response.setContentType("application/pdf");
+            response.setContentLength(bytes.length);
+            sos.write(bytes, 0, bytes.length);
+            sos.flush();
+            sos.close();
+            
+            FacesContext.getCurrentInstance().responseComplete();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(HistorialMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(HistorialMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HistorialMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return "/medico/ReportePage?faces-redirect=true";
+    }
+    
     public void seleccionarMedico(ActionEvent event) {
         String claveSel = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("clave");    
         dto = new MedicoDTO();

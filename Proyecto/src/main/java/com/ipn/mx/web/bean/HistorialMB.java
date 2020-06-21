@@ -7,14 +7,25 @@ package com.ipn.mx.web.bean;
 
 import com.ipn.mx.modelo.dao.HistorialDAO;
 import com.ipn.mx.modelo.dto.HistorialDTO;
+import java.io.File;
+import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 
 /**
@@ -53,7 +64,7 @@ public class HistorialMB extends BaseBean implements Serializable {
     public String back(){
         init();
         
-        return "/Principal?faces-redirect=true";
+        return "/historial/AdminHistorial?faces-redirect=true";
     }
     
     public String prepareIndex(){
@@ -94,9 +105,33 @@ public class HistorialMB extends BaseBean implements Serializable {
         }
     }
     
-    public String reporte(ActionEvent event){
+    public String reporte(){
+        String relativeWebPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reportes/Historial.jasper");
+        File archivo = new File(relativeWebPath);
+        Map parametros = new HashMap();
+        parametros.put("id", dto.getEntidad().getIdhistorial());
         
-        return "";
+        try {
+            byte[] bytes = JasperRunManager.runReportToPdf(archivo.getPath(), parametros, dao.getConnection());
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            ServletOutputStream sos = response.getOutputStream();
+            response.setContentType("application/pdf");
+            response.setContentLength(bytes.length);
+            sos.write(bytes, 0, bytes.length);
+            sos.flush();
+            sos.close();
+            
+            FacesContext.getCurrentInstance().responseComplete();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(HistorialMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(HistorialMB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HistorialMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return "/historial/ReportePage?faces-redirect=true";
     }
     
     public void seleccionarHistorial(ActionEvent event) {

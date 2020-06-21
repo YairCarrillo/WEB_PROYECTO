@@ -69,10 +69,9 @@
                                                 <h:commandButton class="btn btn-danger" style="margin: 10px" id="btnDelete" value="Borrar" action="#{historialMB.borrar()}" actionListener="#{historialMB.seleccionarHistorial}">
                                                     <f:param name="claveSel" value="#{dto.idhistorial}"/>
                                                 </h:commandButton> 
-                                                <h:commandButton class="btn btn-secondary" style="margin: 10px" id="btnReport" actionListener="#{historialMB.seleccionarHistorial}">
-                                                    <h:outputLink value="#{historialMB.reporte(event)}" target="_blank">Reporte</h:outputLink>
+                                                <h:commandLink class="btn btn-secondary" style="margin: 10px" id="btnReporte" value="Reporte" action="#{historialMB.reporte()}" actionListener="#{historialMB.seleccionarHistorial}" target="_blank">
                                                     <f:param name="claveSel" value="#{dto.idhistorial}"/>
-                                                </h:commandButton> 
+                                                </h:commandLink>
                                             </p:column>
                                         </p:dataTable> 
                                     </div>

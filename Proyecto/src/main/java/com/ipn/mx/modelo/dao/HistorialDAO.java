@@ -7,6 +7,9 @@ package com.ipn.mx.modelo.dao;
 
 import com.ipn.mx.modelo.dto.HistorialDTO;
 import com.ipn.mx.util.HibernateUtil;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -18,6 +21,24 @@ import org.hibernate.query.Query;
  * @author jonathan
  */
 public class HistorialDAO {
+    public Connection con;
+    
+    public Connection getConnection() throws SQLException{
+        String user = "ntkbequsmrwokb";
+        String pwd = "bdfb3ebe920f1cac9d88f2ff19b261059014dd77ec5237f28eb84b14ac3706fd";
+        String url = "jdbc:postgresql://ec2-52-44-55-63.compute-1.amazonaws.com:5432/denmvmarmuuvcu?sslmode=require";
+        String driver = "org.postgresql.Driver";
+        
+        try{
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, user, pwd);
+        }catch(ClassNotFoundException | SQLException ex){
+            System.out.println("Error en la conexion");
+        }
+        
+        return con;
+    }
+    
     public void create(HistorialDTO dto){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = session.getTransaction();

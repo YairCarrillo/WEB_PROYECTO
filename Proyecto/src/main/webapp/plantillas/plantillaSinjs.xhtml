@@ -33,7 +33,7 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <h:form id="frmPrincipal" class="form-inline my-2 my-lg-0">
+                       <h:form id="frmPrincipal" class="form-inline my-2 my-lg-0">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
                                     <h:commandLink class="nav-link" value="Home" action="/Principal?faces-redirect=true"/>
@@ -43,6 +43,9 @@
                                 </li>
                                 <li class="nav-item active">
                                     <h:commandLink class="nav-link"  value="Pacientes" action="/paciente/AdminPaciente?faces-redirect=true"/>
+                                </li>
+                                <li class="nav-item active">
+                                    <h:commandLink class="nav-link"  value="Historiales" action="/historial/AdminHistorial?faces-redirect=true"/>
                                 </li>
                                 <li class="nav-item active">
                                     <h:commandLink class="nav-link"  value="Causas" action="/causa/AdminCausa?faces-redirect=true"/>
@@ -55,9 +58,6 @@
                                 </li>
                                 <li class="nav-item active">
                                     <h:commandLink class="nav-link"  value="Especialidades" action="/especialidad/AdminEspecialidad?faces-redirect=true"/>
-                                </li>
-                                <li class="nav-item active">
-                                    <h:commandLink class="nav-link"  value="Estados Cuartos" action="/edocuarto/AdminEdoCuarto?faces-redirect=true"/>
                                 </li>
                             </ul>
                         </h:form>

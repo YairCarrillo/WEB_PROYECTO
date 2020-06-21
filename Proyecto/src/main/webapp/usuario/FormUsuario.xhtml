@@ -38,10 +38,15 @@
                                         </div>
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblNombreUsuario" for="txtNombreUsuario" value="Nombre Usuario"/>
-                                            <h:inputText class="form-control" id="txtNombreUsuario" value="#{usuarioMB.dto.entidad.nombreusuario}" required="true" 
+                                            <h:inputText class="form-control" id="txtNombreUsuario1" value="#{usuarioMB.dto.entidad.nombreusuario}" required="true" 
                                                          requiredMessage="Este campo Nombre Usuario es obligatorio" 
                                                          maxlength="50"
-                                                         validator="#{usuarioMB.validateUserName}"/>
+                                                         validator="#{usuarioMB.validateUserName}"
+                                                         rendered="#{usuarioMB.modoCrear}"/>
+                                            <h:inputText class="form-control" id="txtNombreUsuario2" value="#{usuarioMB.dto.entidad.nombreusuario}" required="true" 
+                                                         requiredMessage="Este campo Nombre Usuario es obligatorio" 
+                                                         maxlength="50"
+                                                         rendered="#{usuarioMB.modoActualizar}"/>
                                         </div>
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblPassword" for="txtPassword" value="Password"/>
@@ -51,13 +56,17 @@
                                             <h:outputLabel id="lblCorreo" for="txtCorreo" value="Correo"/>
                                             <h:inputText class="form-control" id="txtCorreo" value="#{usuarioMB.dto.entidad.correo}" required="true" requiredMessage="Este campo Correo es obligatorio"/>
                                         </div>
+                                        <div class="form-group col-12">
+                                            <h:outputLabel id="lblFoto" for="imgFoto" value="Correo"/>
+                                            <p:fileUpload value="#{usuarioMB.file}" mode="simple" required="true"/>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-4 offset-md-4">
                                             <h:commandButton style="width: 100%; margin:10px" class="btn btn-primary" id="btnEditar" value="Actualizar"
-                                                             action="#{usuarioMB.actualizar()}" rendered="#{usuarioMB.modoActualizar}"/>
+                                                             action="#{usuarioMB.actualizar()}" actionListener="#{usuarioMB.upload()}" rendered="#{usuarioMB.modoActualizar}"/>
                                             <h:commandButton style="width: 100%;margin: 10px" class="btn btn-primary" id="btnCreate" value="Crear"
-                                                             action="#{usuarioMB.crear()}" rendered="#{usuarioMB.modoCrear}"/>
+                                                             action="#{usuarioMB.crear()}" actionListener="#{usuarioMB.upload()}" rendered="#{usuarioMB.modoCrear}"/>
                                         </div>
                                     </div>
                                 </h:form>

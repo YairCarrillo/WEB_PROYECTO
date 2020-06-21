@@ -180,11 +180,11 @@ public class UsuarioDAO {
         //dto.getEntidad().setNombre("Jonathan");
         //dto.getEntidad().setPaterno("Perez");
         //dto.getEntidad().setMaterno("Perez");
-        dto.getEntidad().setNombreusuario("admin");
+        //dto.getEntidad().setNombreusuario("admin");
         //dto.getEntidad().setPassword("admin");
         //dto.getEntidad().setCorreo("Hola que hace");
         UsuarioDAO dao=new UsuarioDAO();
-        dao.UserName(dto);
-        System.out.println(dto);
+        //dao.UserName(dto);
+        System.out.println(dao.readAll());
     }
 }

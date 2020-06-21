@@ -19,6 +19,7 @@
                             <f:view>
                                 <h:form id="frmCuartos">
                                     <h:inputHidden value="#{cuartoMB.accion}"/>
+                                    <p:messages id="validate"/>
                                     <div class="row">
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblId" for="txtNoCuarto" value="No. del cuarto" rendered="#{cuartoMB.modoActualizar}"/>

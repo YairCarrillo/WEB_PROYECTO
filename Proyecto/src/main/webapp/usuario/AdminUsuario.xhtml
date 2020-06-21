@@ -29,6 +29,10 @@
                                                      scrollable="true"
                                                      scrollHeight="300">
                                             <p:column >
+                                                <f:facet  name="header">Foto de perfil</f:facet>
+                                                <img src="data:image/png;base64,#{usuarioMB.base64Img(dto.foto)}" style="height: 100px;width: 100px"/>
+                                            </p:column>
+                                            <p:column >
                                                 <f:facet  name="header"> Folio</f:facet>
                                                 <h:outputText value="#{dto.idusuario}"></h:outputText>
                                             </p:column>

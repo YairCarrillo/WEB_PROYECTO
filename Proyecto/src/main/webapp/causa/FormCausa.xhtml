@@ -18,7 +18,8 @@
                             <f:view>
                                 <h:form id="frmCausas">
                                     <h:inputHidden value="#{causaMB.accion}"/>
-                                    <div class="row">
+                                    <p:messages id="validate"/>
+                                    <div class="row">    
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblId" for="txtIdCausa" value="ID de la Causa" rendered="#{causaMB.modoActualizar}"/>
                                             <h:inputText  class="form-control" id="txtIdCausa" value="#{causaMB.dto.entidad.idCausaHosp}" readonly="true" rendered="#{causaMB.modoActualizar}"/>

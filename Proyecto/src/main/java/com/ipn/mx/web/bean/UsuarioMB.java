@@ -19,6 +19,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.validator.ValidatorException;
+import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.base64.Base64;
+import org.primefaces.model.file.UploadedFile;
+
 
 
 
@@ -31,7 +34,8 @@ import javax.faces.validator.ValidatorException;
 public class UsuarioMB extends BaseBean implements Serializable{
     private UsuarioDTO dto;
     private UsuarioDAO dao = new UsuarioDAO();
-    private List<UsuarioDTO> listaDeUsuarios; 
+    private List<UsuarioDTO> listaDeUsuarios;
+    private UploadedFile file;
     /**
      * Creates a new instance of UsuarioMB
      */
@@ -119,6 +123,14 @@ public class UsuarioMB extends BaseBean implements Serializable{
             throw new ValidatorException(new FacesMessage("Nombre de Usuario Existente"));
         }
     }
+    public void upload(){
+        if(file!=null){
+            dto.getEntidad().setFoto(file.getContent());
+        }
+    }
+    public String base64Img(byte[] foto){
+        return new String(java.util.Base64.getEncoder().encodeToString(foto));
+    }
     public UsuarioDTO getDto() {
         return dto;
     }
@@ -142,6 +154,13 @@ public class UsuarioMB extends BaseBean implements Serializable{
     public void setListaDeUsuarios(List<UsuarioDTO> listaDeUsuarios) {
         this.listaDeUsuarios = listaDeUsuarios;
     }
-    
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
     
 }

@@ -19,7 +19,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.validator.ValidatorException;
-import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.base64.Base64;
 import org.primefaces.model.file.UploadedFile;
 
 

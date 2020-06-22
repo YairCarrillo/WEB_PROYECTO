@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -50,7 +51,7 @@
                                         </div>
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblPassword" for="txtPassword" value="Password"/>
-                                            <h:inputSecret class="form-control" id="txtPassword" value="#{usuarioMB.dto.entidad.password}" required="true" requiredMessage="Este campo Password es obligatorio" maxlength="50"/>
+                                            <h:inputText a:type="password" class="form-control" id="txtPassword" value="#{usuarioMB.dto.entidad.password}" required="true" requiredMessage="Este campo Password es obligatorio" maxlength="50"/>
                                         </div>
                                         <div class="form-group col-12">
                                             <h:outputLabel id="lblCorreo" for="txtCorreo" value="Correo"/>
